@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>content</name>
+        <uri>content</uri>
+    </function>
+
+    <function>
+        <name>top_projects</name>
+        <uri>top_projects</uri>
+    </function>
+    
+    <function>
+        <name>load_auto_name</name>
+        <uri>load_auto_name</uri>
+    </function>
+
+
+    
+
+    
+
+</functions>
