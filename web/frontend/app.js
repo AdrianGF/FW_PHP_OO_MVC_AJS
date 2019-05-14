@@ -1,4 +1,4 @@
-var unlimty = angular.module('unlimty',['ngRoute', 'ui.bootstrap']);
+var unlimty = angular.module('unlimty',['ngRoute', 'toastr' ,'ui.bootstrap']);
 unlimty.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
@@ -35,6 +35,14 @@ unlimty.config(['$routeProvider',
                     }
                 }
             })
+
+            // Login
+            .when("/login", {templateUrl: "frontend/modules/login/view/login.view.html", controller: "loginCtrl"
+            })
+
+
+            .otherwise("/", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl"});
+
     }]);
 
 

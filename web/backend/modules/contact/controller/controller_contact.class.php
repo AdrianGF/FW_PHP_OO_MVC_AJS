@@ -4,16 +4,6 @@ class controller_contact {
     function __construct() {
     }
 
-    function content() { 
-        require_once(VIEW_PATH_INC . "top_page_contact.php");
-        require_once(VIEW_PATH_INC . "banner.php");
-        require_once(VIEW_PATH_INC . "header.php");
-        require_once(VIEW_PATH_INC . "menu.php");
-        loadView('modules/contact/view/', 'main_contact.html');
-        require_once(VIEW_PATH_INC . "footer.php");
-        require_once(VIEW_PATH_INC . "bottom_page.php");
-
-    }
 
     public function process_contact() {
         if($_POST['token'] === "contact_form"){

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>content</name>
+        <uri>content</uri>
+    </function>
+    <function>
+        <name>validate_register</name>
+        <uri>validate_register</uri>
+    </function>
+    <function>
+        <name>validate_login</name>
+        <uri>validate_login</uri>
+    </function>
+    <function>
+        <name>active_user</name>
+        <uri>active_user</uri>
+    </function>
+    <function>
+        <name>recover_pass_email</name>
+        <uri>recover_pass_email</uri>
+    </function>
+    <function>
+        <name>recover_password</name>
+        <uri>recover_password</uri>
+    </function>
+    <function>
+        <name>update_password</name>
+        <uri>update_password</uri>
+    </function>
+    <function>
+        <name>profile</name>
+        <uri>profile</uri>
+    </function>
+    <function>
+        <name>typeuser</name>
+        <uri>typeuser</uri>
+    </function>
+    <function>
+        <name>user_info</name>
+        <uri>user_info</uri>
+    </function>
+    <function>
+        <name>key_auth0</name>
+        <uri>key_auth0</uri>
+    </function>
+
+
+</functions>
