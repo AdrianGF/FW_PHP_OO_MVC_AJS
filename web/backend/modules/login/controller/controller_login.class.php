@@ -9,13 +9,15 @@ class controller_login {
 
     function typeuser(){
         //$data_social = json_decode($_POST['data_social_net'],true);
-        $result = loadModel(MODEL_LOGIN,'login_model','type_user',$_POST['token']);
+        $result = loadModel(MODEL_LOGIN,'login_model','type_user',$_GET['param']);
         if ($result) {
             echo json_encode($result);
         }else{
             echo json_encode(false);
         }
     }
+
+    
 
     function user_info(){
         $token = $_POST['user'];
@@ -61,7 +63,7 @@ class controller_login {
 
     function recover_pass_email(){
         $key = api_key('mailgun');
-        $recover_pass = $_POST['rpuser'];
+        $recover_pass = json_decode($_POST['rpuser'],true);
         $response = validate_data($recover_pass,'recover_pass');
 
         if ($response['valido'] === true) {
@@ -75,13 +77,13 @@ class controller_login {
                 $result['key'] = $key;
                 enviar_email($result);
 
-                $jsondata['success'] = true;
+                $jsondata['valido'] = true;
                 echo json_encode($jsondata);
             }else{
                 echo "error";
             }
         }else{
-            $jsondata['success'] = false;
+            $jsondata['valido'] = false;
             $jsondata['error'] = $response['error'];
             //header('HTTP/1.0 400 Bad error');
             echo json_encode($jsondata);
@@ -90,19 +92,12 @@ class controller_login {
 
     function update_password(){
         
-        $pass_data = json_decode($_POST['rec_pass'],true);
-        $pass_data['token'] = $_SESSION['token']; 
-        $_SESSION['token'] = '';
-        $response = validate_data($pass_data,'recover_passwd');
-        if ($response['valido'] === true) {
-            $result = loadModel(MODEL_LOGIN,'login_model','update_passwd',$pass_data);
-            $pass_data['success'] = true;
-            
-            echo json_encode($pass_data);
+        $rpass_data = json_decode($_POST['rec_pass'],true);
+        if ($rpass_data) {
+            $result = loadModel(MODEL_LOGIN,'login_model','update_passwd',$rpass_data);
+            echo json_encode($result);
         }else{
-            $jsondata['success'] = false;
-            $jsondata['error'] = $response['error'];
-            //header('HTTP/1.0 400 Bad error');
+            $jsondata = false;
             echo json_encode($jsondata);	
         }
     }
@@ -113,12 +108,14 @@ class controller_login {
         $info_data = json_decode($_POST['login_data'],true);
         $response = validate_data($info_data,'login');
 
-        if ($response['valido']) {
+        if ($response['valido'] === true) {
+            $data['token_log_valido'] = loadModel(MODEL_LOGIN, 'login_model', 'token_log', $info_data['login_user']);
             $data = exist_user($info_data['login_user']);
             $data = $data[0];
-            echo json_encode($data['token']);
+            $data['valido'] = true;
+            echo json_encode($data);
         }else{
-            $jsondata['success'] = false;
+            $jsondata['valido'] = false;
             $jsondata['error'] = $response['error'];
             //header('HTTP/1.0 400 Bad error');
             echo json_encode($jsondata);
@@ -139,9 +136,9 @@ class controller_login {
                 $result['key'] = $key;
                 enviar_email($result);
             }
-            echo json_encode($result);
+            echo json_encode($response);
         }else{
-            $jsondata['success'] = false;
+            $jsondata['valido'] = false;
             $jsondata['error'] = $response['error'];
             //header('HTTP/1.0 400 Bad error');
             echo json_encode($jsondata);
@@ -149,12 +146,9 @@ class controller_login {
     }
 
     function active_user(){
-
-        if (isset($_GET['param'])) {
-            loadModel(MODEL_LOGIN, "login_model", "active_user", $_GET['param']);
-            setcookie("toastr","ver");
-            header('Location: ' . SITE_PATH);
-        }	
+        $token = json_decode($_POST['token'],true);
+        loadModel(MODEL_LOGIN, "login_model", "active_user", $token['token']);
+        echo json_encode($token);
     }
 
 

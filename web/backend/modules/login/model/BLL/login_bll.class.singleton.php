@@ -20,6 +20,10 @@ class login_bll{
         return $this->dao->select_exist_user($this->db,$arrArgument);
     }
 
+    public function token_log_BLL($arrArgument){
+        return $this->dao->token_log_update($this->db,$arrArgument);
+    }
+
     public function insert_user_BLL($arrArgument){
         return $this->dao->insert_user_reg($this->db,$arrArgument);
     }

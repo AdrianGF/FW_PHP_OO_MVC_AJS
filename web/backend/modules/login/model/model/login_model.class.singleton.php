@@ -19,6 +19,10 @@ class login_model {
         return $this->bll->exist_user_BLL($arrArgument);
     }
 
+    public function token_log($arrArgument){
+        return $this->bll->token_log_BLL($arrArgument);
+    }
+
     public function insert_user($arrArgument){
         return $this->bll->insert_user_BLL($arrArgument);
     }

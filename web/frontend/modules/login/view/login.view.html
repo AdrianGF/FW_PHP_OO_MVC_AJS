@@ -10,18 +10,24 @@
                     <table>
                         <tr>
                             <td>Usuario:</td>
-                            <td><input name="user" id="login_user" type="text" placeholder="Usuario" ng-minlength="3" ng-maxlength="20"/> </td>
+                            <td>
+                                <input required name="login_user" id="login_user" type="text" placeholder="Usuario" ng-model="login.login_user" ng-minlength="3" ng-maxlength="20"/> 
+                                <span class="text-danger" ng-show="LogForm.login_user.$error.required && (LogForm.login_user.$dirty || LogForm.login_user.$touched)">Introduzca un nombre</span>
+	       				        <span class="text-danger" ng-show="LogForm.login_user.$error.minlength">Introduzca mas de 3 caracteres</span>
+	       				        <span class="text-danger" ng-show="LogForm.login_user.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Password:</td>
-                            <td><input name="password" id="login_password" type="password" placeholder="Contraseña"/> </td>
+                            <td>
+                                <input required name="login_password" id="login_password" type="password" placeholder="Contraseña"  ng-model="login.login_password" ng-minlength="8" ng-maxlength="30"/> 
+                                <span class="text-danger" ng-show="LogForm.login_password.$error.required && (LogForm.login_password.$dirty || LogForm.login_password.$touched)">Introduzca un contraseña</span>
+	       				        <span class="text-danger" ng-show="LogForm.login_password.$error.minlength">Introduzca mas de 8 caracteres</span>
+	       				        <span class="text-danger" ng-show="LogForm.login_password.$error.maxlength">Introduzca menos de 30 caracteres</span>
+                            </td>
                         </tr>
                     </table>
                 </form>
-                <div id="login_ajuste">
-                  <div id="login"><h2>Login</h2></div>
-                 <div id="btn-login"><h2>Redes Sociales</h2></div>
-                </div>
             </div>
           
             <div class="form_register">
@@ -31,26 +37,74 @@
                     <table>
                          <tr>
                             <td>Usuario:</td>
-                            <td><input name="user" id="reg_user" type="text" placeholder="Introduce el usuario"/> </td>
+                            <td>
+                                <input required name="reg_user" id="reg_user" type="text" placeholder="Introduce el usuario" ng-model="register.reg_user" ng-minlength="3" ng-maxlength="20"/> 
+                                <span class="text-danger" ng-show="RegForm.reg_user.$error.required && (RegForm.reg_user.$dirty || RegForm.reg_user.$touched)">Introduzca un nombre</span>
+                                <span class="text-danger" ng-show="RegForm.reg_user.$error.minlength">Introduzca mas de 3 caracteres</span>
+                                <span class="text-danger" ng-show="RegForm.reg_user.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Correo:</td>
-                            <td><input name="email" id="reg_email" type="text" placeholder="Correo"/> </td>
+                            <td>
+                                <input required name="reg_email" id="reg_email" type="email" placeholder="Correo"  ng-model="register.reg_email"/> 
+                                <span class="text-danger" ng-show="RegForm.reg_email.$error.required && (RegForm.reg_email.$dirty || RegForm.reg_email.$touched)">Introduzca un correo electroncico</span>
+                                <span class="text-danger" ng-show="RegForm.reg_email.$error.email">Email no valido</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Contraseña:</td>
-                            <td><div><input name="password" id="reg_password" type="password" placeholder="Contraseña"/> <div id="show1" class="show_pass" ><i class="fas fa-eye"></i></div></div> </td>
+                            <td>
+                                <div><input required name="reg_password" id="reg_password" type="{{inputType1}}" placeholder="Contraseña"  ng-model="register.reg_password" ng-minlength="8" ng-maxlength="30"/> <div id="show1" class="show_pass"  ng-mousedown="hideShowPassword1()"  ng-mouseup="hideShowPassword1()" ><i class="fas fa-eye"></i></div></div> 
+                                <span class="text-danger" ng-show="RegForm.reg_password.$error.required && (RegForm.reg_password.$dirty || RegForm.reg_password.$touched)">Introduzca un contraseña</span>
+	       				        <span class="text-danger" ng-show="RegForm.reg_password.$error.minlength">Introduzca mas de 8 caracteres</span>
+	       				        <span class="text-danger" ng-show="RegForm.reg_password.$error.maxlength">Introduzca menos de 30 caracteres</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Repite la contraseña:</td>
-                            <td><input name="password2" id="reg_password2" type="password" placeholder="Contraseña"/> <div id="show2" class="show_pass" ><i class="fas fa-eye"></i></div> </td>
+                            <td>
+                                <div><input required name="reg_password2" id="reg_password2" type="{{inputType2}}" placeholder="Contraseña"  ng-model="register.reg_password2"  ng-minlength="8" ng-maxlength="30"/> <div id="show2" class="show_pass"  ng-mousedown="hideShowPassword2()"  ng-mouseup="hideShowPassword2()"><i class="fas fa-eye"></i></div></div>
+                                <span class="text-danger" ng-show="RegForm.reg_password2.$error.required && (RegForm.reg_password2.$dirty || RegForm.reg_password2.$touched)">Introduzca un contraseña</span>
+                                <span class="text-danger" ng-show="RegForm.reg_password2.$error.minlength">Introduzca mas de 8 caracteres</span>
+                                <span class="text-danger" ng-show="RegForm.reg_password2.$error.maxlength">Introduzca menos de 30 caracteres</span>
+                                <span class="text-danger" ng-show="RegForm.reg_password2 != register.reg_password && (RegForm.reg_password2.$dirty || RegForm.reg_password2.$touched)">No coinciden</span>        
+                            </td>
                         </tr>
                     </table>
                 </form>
               
-                <div id="register"><h2>Register</h2></div>
+                <div id="register" ng-show="RegForm.reg_user.$valid && RegForm.reg_email.$valid && RegForm.reg_password.$valid && RegForm.reg_password2.$valid && register.reg_password2 === register.reg_password" ng-click="submitRegister()">
+                    <h2>Register</h2>
+                </div>
+
+                
+        
+
+
             </div>
           
+
+            <div id="login_ajuste">
+                <div id="login" ng-show="LogForm.login_user.$valid && LogForm.login_password.$valid" ng-click="submitLogin()">
+                    <h2>Login</h2>
+                </div>
+              
+             <div id="btn-login" ng-click="logGoogle()" ><h2>Google</h2></div>
+             
+            </div>
+
+            <button id="show_recoverypass">Recuperar contraseña</button>
+            <div id="rp_password">
+                <form id="recover_form" name="recover_form">
+                    <input required type="text" name="rpuser" id="rpuser" ng-model="recover.rpuser" placeholder="Usuario" ng-minlength="3" ng-maxlength="20"/>
+                    <button id="recovery_passw" ng-click="recPass()" >Recuperar contraseña</button>
+                </form>
+            </div>
+
+
+
+
         </div>
     </div>
 </section>

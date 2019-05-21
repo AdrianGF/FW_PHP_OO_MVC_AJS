@@ -6,17 +6,17 @@
         $ruta = '';
         $return = '';
         $key = $arr['key'];
-        
+
         switch ($arr['type']) {
             case 'reg':
                 $subject = 'Tu Alta';
-                $ruta = "<a href='" . "http://localhost/framework/FW_PHP_OO_MVC_JQUERY_V2/web/login/active_user/&param=" . $arr['token'] . "'>aqu&iacute;</a>";
+                $ruta = '<a href="http://' . $_SERVER['HTTP_HOST'] . '/framework/FW_PHP_OO_MVC_AJS/web/#/login/active_user/' . $arr['token'] .'">aqu&iacute;</a>';
                 $body = 'Gracias por unirte.<br> Para finalizar el registro, pulsa ' . $ruta;
                 break;
                 
             case 'recover':
                 $subject = 'Tu Nueva Contraseña';
-                $ruta = "<a href='" . "http://localhost/framework/FW_PHP_OO_MVC_JQUERY_V2/web/login/recover_password/&param=" . $arr['token'] . "'>aqu&iacute;</a>";
+                $ruta = '<a href="http://' . $_SERVER['HTTP_HOST'] . '/framework/FW_PHP_OO_MVC_AJS/web/#/login/recover_password/' . $arr['token'] .'">aqu&iacute;</a>';
                 $body = 'Para recordar tu password pulsa ' . $ruta;
                 break;
                 
@@ -61,7 +61,7 @@
     function send_mailgun($from, $to, $subject, $html, $key){
         	$config = array();
         	$config['api_key'] = $key; //API Key
-        	$config['api_url'] = "https://api.mailgun.net/v3/sandboxa75f8bc474c1401db0d9f0b14f81d9f2.mailgun.org/messages"; //API Base URL
+        	$config['api_url'] = "https://api.mailgun.net/v3/sandboxbcbc34072662484abee8f10fe392d631.mailgun.org/messages"; //API Base URL
     
         	$message = array();
         	$message['from'] = $from;

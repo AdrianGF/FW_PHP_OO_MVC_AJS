@@ -40,6 +40,23 @@ unlimty.config(['$routeProvider',
             .when("/login", {templateUrl: "frontend/modules/login/view/login.view.html", controller: "loginCtrl"
             })
 
+            .when("/login/active_user/:token", {
+                resolve: {
+                    activate: function (services, $route) {
+                        return services.put('login','active_user',{'token':JSON.stringify({'token':$route.current.params.token})})
+                        .then(function(response){
+                            console.log(response);
+                            location.href = '#/login';
+                        });
+                    }
+                }
+            })
+
+            .when("/login/recover_password/:token", {templateUrl: "frontend/modules/login/view/recover_password.view.html", controller: "changepassCtrl"
+            })
+            
+
+
 
             .otherwise("/", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl"});
 

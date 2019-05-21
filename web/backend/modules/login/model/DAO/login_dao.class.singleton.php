@@ -14,10 +14,22 @@ class login_dao {
     }
 
     public function select_exist_user($db,$arrArgument) {
-        $sql = "SELECT user,activate,token,`password` FROM users WHERE IDuser = '$arrArgument'";
+        
+        $sql = "SELECT user,activate,token,`password`,token_log FROM users WHERE IDuser = '$arrArgument'";
         $resu = $db->ejecutar($sql);
         return $db->listar($resu);
+        
     }
+
+    public function token_log_update($db,$arrArgument) {
+        
+        $token = generate_Token_secure(40);
+
+        $sql = "UPDATE users SET token_log = '$token' WHERE IDuser = '$arrArgument'";
+        return $db->ejecutar($sql);
+        
+    }
+    
 
     public function insert_user_reg($db,$arrArgument) {
         $user = $arrArgument['reg_user'];
@@ -26,7 +38,8 @@ class login_dao {
             'cost' => 12,
         ];
         $password= password_hash($arrArgument['reg_password'], PASSWORD_BCRYPT, $opciones);
-        $token = md5(uniqid(rand(),true));
+        //$token = md5(uniqid(rand(),true));
+        $token = generate_Token_secure(20);
         $avatar= "http://i.pravatar.cc/150?u=$mail"; 
 
         $sql = "INSERT INTO users(IDuser, user, email, `password`, `type`, avatar, activate, token) VALUES('$user','$user','$mail','$password',1,'$avatar',0,'$token')";
@@ -49,7 +62,7 @@ class login_dao {
         $opciones = [
             'cost' => 12,
         ];
-        $password = password_hash($arrArgument['recpass'],  PASSWORD_BCRYPT, $opciones);
+        $password = password_hash($arrArgument['rec_password'],  PASSWORD_BCRYPT, $opciones);
         $token = $arrArgument['token'];
 
         $sql = "UPDATE users SET `password` = '$password' WHERE token = '$token'";
@@ -57,7 +70,7 @@ class login_dao {
     }
 
     public function select_type_user($db,$arrArgument) {
-        $sql = "SELECT `type` FROM users WHERE token = '$arrArgument'";
+        $sql = "SELECT `type` FROM users WHERE token_log = '$arrArgument'";
         $resu = $db->ejecutar($sql);
         return $db->listar($resu);
     }
