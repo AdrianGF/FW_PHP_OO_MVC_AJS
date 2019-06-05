@@ -47,3 +47,7 @@ unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplet
     
 
 });
+
+unlimty.controller('menuCtrl', function(loginService) {
+  loginService.login();
+});

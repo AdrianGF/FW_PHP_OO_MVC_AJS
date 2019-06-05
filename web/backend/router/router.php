@@ -4,6 +4,7 @@ require 'autoload.php';
 include(UTILS . "utils.inc.php");
 include(UTILS . "common.inc.php");
 include(UTILS . "mail.inc.php");
+include(UTILS . "secret.inc.php");
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 

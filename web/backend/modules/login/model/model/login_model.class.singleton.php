@@ -47,4 +47,24 @@ class login_model {
         return $this->bll->user_info_BLL($arrArgument);
     }
 
+    public function insert_user_social($arrArgument){
+        return $this->bll->insert_user_social_BLL($arrArgument);
+    }
+
+    public function obtain_paises($url) {
+        return $this->bll->obtain_paises_BLL($url);
+    }
+
+    public function obtain_provincias() {
+        return $this->bll->obtain_provincias_BLL();
+    }
+ 
+    public function obtain_poblaciones($arrArgument) {
+        return $this->bll->obtain_poblaciones_BLL($arrArgument);
+    }
+
+    public function update_user($arrArgument){
+        return $this->bll->update_user_BLL($arrArgument);
+    }
+
 }

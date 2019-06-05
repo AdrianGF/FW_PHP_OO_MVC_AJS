@@ -2,11 +2,17 @@
 //PROYECTO
 define('PROJECT', '/framework/FW_PHP_OO_MVC_AJS/web/backend/');
 
+//PROYECTO Angular
+define('PROJECTF', '/framework/FW_PHP_OO_MVC_AJS/web/');
+
 //SITE_ROOT
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT);
 
 //SITE_PATH
 define('SITE_PATH', 'http://' . $_SERVER['HTTP_HOST'] . PROJECT);
+
+//SITE_PATH_ANGULAR
+define('SITE_PATH_ANGULAR', 'http://' . $_SERVER['HTTP_HOST'] . PROJECTF);
 
 //CSS
 define('CSS_PATH', SITE_PATH . 'view/assets/css/');
@@ -28,6 +34,12 @@ define('VIEW_PATH_INC', SITE_ROOT . 'view/inc/');
 
 //utils
 define('UTILS', SITE_ROOT . 'utils/');
+
+//resources
+define('RESOURCES', SITE_ROOT . 'resources/');
+
+//MEDIA
+define('MEDIA_PATH',SITE_ROOT . 'media/');
 
 
 //model home

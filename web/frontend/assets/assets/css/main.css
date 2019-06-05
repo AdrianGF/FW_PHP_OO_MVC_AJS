@@ -4330,6 +4330,7 @@
 	height: auto;
 	display: block;
 	text-align: center;
+	padding-left: 0;
 }
 
 .DivForm {
@@ -4561,14 +4562,14 @@ input#ProPrice.ProPrice {
 .like_bttn button .img_like{
 	width: 30px !important;
 	height: 30px;
-	background:url(view/images/like02.svg) no-repeat;
+
 	filter: grayscale(100%);
 	text-decoration: none;
 	
 }
 
 .like_bttn button:focus > .img_like {
-	background:url(view/images/like02.svg) no-repeat !important;
+	
 	filter: grayscale(0%);
 }
 
@@ -5048,7 +5049,7 @@ ul.pagination > li:hover > a {
 	margin-right: 4%;
 	margin-bottom: 0px;
 	padding-right: 0px; 
-	height: 265px;
+	height: 226px;
 }
 
 #LogForm h2{
@@ -5058,11 +5059,7 @@ ul.pagination > li:hover > a {
 }
 
 #login{
-	border: 1px solid black;
-	display: inline-block;
 	height: 55px;
-	width: 48%;
-	margin-left: 1%;
 	cursor: pointer;
 	text-align: center;
 	background-image: linear-gradient(to right, rgb(64, 82, 240) , rgb(34, 168, 162));
@@ -5073,10 +5070,6 @@ ul.pagination > li:hover > a {
 	padding: 8px;
 	color: white;
 	margin-bottom: 0px; 
-}
-
-#login_ajuste{
-	margin-top: 15px;
 }
 
 #LogForm {
@@ -5092,14 +5085,23 @@ ul.pagination > li:hover > a {
 	margin-bottom: 0px;
 }
 
+#login_ajuste {
+	border: solid 1px black;
+	background-color: dimgray;
+    width: 561px;
+	padding-bottom: 29.333px;
+	padding-right: 0px;
+	text-align: center;
+	display: block;
+    position: absolute;
+    top: 55%;
+}
+
 #btn-login{
 	border: 1px solid black;
 	display: inline-block;
 	height: 55px;
-	width: 48%;
-	margin: 0px;
-	margin-left: 1%;
-	margin-top: 0px;
+	width: 70%;
 	cursor: pointer;
 	text-align: center;
 	background-image: linear-gradient(to right, rgb(59, 170, 204) , rgb(95, 233, 226));
@@ -5119,7 +5121,7 @@ ul.pagination > li:hover > a {
 	margin-left: 0%;
 	margin-bottom: 0px;
 	padding-left: 0px; 
-	height: 362.66px;
+	height: 371.66px;
 }
 
 #RegForm {
@@ -5286,3 +5288,44 @@ ul.pagination > li:hover > a {
 	text-align: center;
 }
 
+#mimenu {
+	background-color: black;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	display: block;
+	text-align: center;
+}
+
+#mimenu a{
+	text-decoration: none;
+	color: lightblue;
+}
+
+#mimenu > ul {
+	margin: 0 0 1rem 0;
+}
+
+#mimenu > ul.links {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#mimenu li {
+	display: inline-block;
+	width: auto;
+	padding: 0;
+}
+
+#mimenu li:hover {
+	background-color: rgb(39, 39, 39);
+}
+
+#dropzone {
+	background-image: linear-gradient(to right, rgb(210, 227, 233) , rgb(184, 255, 237));
+	width: 100%;
+}

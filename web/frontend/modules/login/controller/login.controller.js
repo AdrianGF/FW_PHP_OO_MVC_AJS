@@ -1,8 +1,8 @@
-unlimty.controller('loginCtrl', function ($scope, services, toastr, localstorageService, $timeout, loginService, googleService) {
+unlimty.controller('loginCtrl', function ($scope, services, toastr, localstorageService, $timeout, loginService) {
 
 	$scope.inputType1 = 'password';
 	$scope.inputType2 = 'password';
-
+	//console.log(api_key.get_key('auth0'));
 
 	$scope.hideShowPassword1 = function(){
 		if ($scope.inputType1 == 'password'){
@@ -32,8 +32,8 @@ unlimty.controller('loginCtrl', function ($scope, services, toastr, localstorage
                 });
                 $timeout( function(){
                 	loginService.login();
-		            //location.href = '.';
-		        }, 3000 );
+		            location.href = '#/home';
+		        }, 1500 );
 			}else{
 				if (response.error.login_user) {
 					toastr.error(response.error.login_user, 'Error invalid user',{
@@ -61,7 +61,10 @@ unlimty.controller('loginCtrl', function ($scope, services, toastr, localstorage
 					closeButton: true
 				});
 				$timeout( function(){
-		            location.href = '#/';
+					location.href = '#/';
+					toastr.info('Revise el correo electrónico', 'Activación',{
+						closeButton: true
+					});
 		        }, 3000 );
 			}else{
 				//console.log(response.error);
@@ -82,30 +85,6 @@ unlimty.controller('loginCtrl', function ($scope, services, toastr, localstorage
 				}
 			}
 
-		});
-	}
-
-	$scope.logGoogle = function(){
-		googleService.login();
-	};
-
-
-	$scope.recPass = function(){
-		var user = $scope.recover.rpuser
-		services.post('login','recover_pass_email',{'rpuser':JSON.stringify(user)}).then(function (response) {
-			console.log(response);
-			if (response.valido === true) {
-				toastr.success('Revisa tu correo electronico', 'Perfecto',{
-                    closeButton: true
-                });
-                $timeout( function(){
-		            location.href = '#/';
-		        }, 3000 );
-			}else{
-				toastr.error(response.error.rpuser, 'Error',{
-                	closeButton: true
-            	});
-			}
 		});
 	}
     
@@ -131,4 +110,169 @@ unlimty.controller('changepassCtrl', function($scope,services,$route,toastr,$tim
 			}
 		});
 	}
+});
+
+unlimty.controller('profileCtrl', function ($scope, services, localstorageService, load_pais_prov_poblac, toastr, $timeout) {
+  
+
+
+		var token_log = localstorageService.getUsers();
+		//console.log(token_log);
+
+		services.post('login','user_info',{'token_log':token_log}).then(function (response) {
+			//console.log(response);
+			$scope.info_user = response[0];
+			
+		});
+    
+
+
+	//rellenar pais, provincias y poblaciones
+    load_pais_prov_poblac.load_pais()
+    .then(function (response) {
+		//console.log(response);
+        if(response.success){
+            $scope.paises = response.datas;
+        }else{
+            $scope.AlertMessage = true;
+            $scope.pais_error = "Error al recuperar la informacion de paises";
+            $timeout(function () {
+                $scope.pais_error = "";
+                $scope.AlertMessage = false;
+            }, 8000);
+        }
+	});
+	
+	$scope.resetPais = function () {
+        //console.log(this.pais);
+        if (this.pais.sISOCode == 'ES') {
+            load_pais_prov_poblac.loadProvincia()
+            .then(function (response) {
+                if(response.success){
+                    $scope.provincias = response.datas;
+                }else{
+                    $scope.AlertMessage = true;
+                    $scope.prov_error = "Error al recuperar la informacion de provincias";
+                    $timeout(function () {
+                        $scope.prov_error = "";
+                        $scope.AlertMessage = false;
+                    }, 2000);
+                }
+            });
+            $scope.poblaciones = null;
+        }else {
+            //$scope.provincias = null;
+            //$scope.poblaciones = null;
+        }
+	};
+	
+	$scope.resetValues = function () {
+        var datos = {idPoblac: this.provincia.id};
+        load_pais_prov_poblac.loadPoblacion(datos)
+        .then(function (response) {
+            if(response.success){
+                $scope.poblaciones = response.datas;
+            }else{
+                $scope.AlertMessage = true;
+                $scope.pob_error = "Error al recuperar la informacion de poblaciones";
+                $timeout(function () {
+                    $scope.pob_error = "";
+                    $scope.AlertMessage = false;
+                }, 2000);
+            }
+        });
+    };
+
+
+	//dropzone
+    $scope.dropzoneConfig = {
+        'options': {
+            'url': 'backend/index.php?module=login&function=upload_avatar',
+            addRemoveLinks: true,
+            maxFileSize: 1000,
+            dictResponseError: "Ha ocurrido un error en el server",
+            acceptedFiles: 'image/*,.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.rar,application/pdf,.psd'
+        },
+        'eventHandlers': {
+            'sending': function (file, formData, xhr) {},
+            'success': function (file, response) {
+                console.log(response);
+                response = JSON.parse(response);
+                //console.log(response);
+                if (response.resultado) {
+                    $(".msg").addClass('msg_ok').removeClass('msg_error').text('Success Upload image!!');
+                    $('.msg').animate({'right': '300px'}, 300);
+
+                    //console.log(response.datos);
+                    $scope.user.avatar = response.datos;
+
+                    var user = {usuario: $scope.user.usuario, avatar: response.datos,
+                    tipo: $scope.user.tipo, nombre: $scope.user.nombre};
+                    cookiesService.SetCredentials(user);
+
+                    UserService.login();
+                } else {
+                    $(".msg").addClass('msg_error').removeClass('msg_ok').text(response['error']);
+                    $('.msg').animate({'right': '300px'}, 300);
+                }
+            },
+            'removedfile': function (file, serverFileName) {
+                if (file.xhr.response) {
+                    $('.msg').text('').removeClass('msg_ok');
+                    $('.msg').text('').removeClass('msg_error');
+                    var data = jQuery.parseJSON(file.xhr.response);
+                    services.post("login", "delete_avatar", JSON.stringify({'filename': data}));
+                }
+            }
+    }};
+	
+	$scope.submit = function () {
+        var prov = null;
+        var pob = null;
+        var token = localstorageService.getUsers();
+
+        if(this.pais.sISOCode === 'ES'){
+            if (!this.provincia.nombre) {
+                prov = "";
+            }else{ 
+                prov = this.provincia.nombre;
+            }
+    
+            if (!this.poblacion.poblacion) {
+                pob = " ";
+            }else{
+                pob = this.poblacion.poblacion;
+            }
+        }
+
+        var data = {"IDuser": $scope.info_user.user ,"Name": this.profile.Name, "Surname1": this.profile.Surname1, "Surname2": this.profile.Surname2, "Birthday": this.profile.Birthday, "Country": this.pais.sName, "Province": prov, "City": pob, "Token_log": token };
+        var data1 = JSON.stringify(data);
+        console.log(data1);
+
+        services.put("login", "edit_profile", data1).then(function (response) { 
+            console.log(response);
+        });
+
+	};
+	
+
+	$scope.recPass = function(){
+		var user = this.recover.rpuser
+		services.post('login','recover_pass_email',{'rpuser':JSON.stringify(user)}).then(function (response) {
+			console.log(response);
+			if (response.valido === true) {
+				toastr.success('Revisa tu correo electronico', 'Perfecto',{
+                    closeButton: true
+                });
+                $timeout( function(){
+		            location.href = '#/';
+		        }, 3000 );
+			}else{
+				toastr.error(response.error.rpuser, 'Error',{
+                	closeButton: true
+            	});
+			}
+		});
+	}
+
 });

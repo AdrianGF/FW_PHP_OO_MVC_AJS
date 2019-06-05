@@ -13,17 +13,25 @@ function ($location, $rootScope, services,localstorageService, socialService) {
                 console.log(response[0].type);
                 var type = response[0].type;
                 if (type === '1') {
-                    console.log("user");
+                    //console.log("user");
+                    $rootScope.login_type = false;
+                    $rootScope.profile_type = true;
+                    $rootScope.logout_type = true;
+
 	            } else if (type === '0') {
-                    console.log("admin");
+                    //console.log("admin");
+                    $rootScope.login_type = false;
+                    $rootScope.profile_type = true;
+                    $rootScope.logout_type = true;
 	            }else{
-                    $rootScope.loginV = true;
+                    $rootScope.login_type = true;
+                    $rootScope.logout_type = false;
                 }
 
 
             });
         } else {
-            $rootScope.loginV = true;
+            $rootScope.login_type = true;
         }
     }
 

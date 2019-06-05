@@ -28,6 +28,12 @@
                         </tr>
                     </table>
                 </form>
+
+
+                <div id="login" ng-show="LogForm.login_user.$valid && LogForm.login_password.$valid" ng-click="submitLogin()">
+                    <h2>Login</h2>
+                </div>
+
             </div>
           
             <div class="form_register">
@@ -77,33 +83,15 @@
                 <div id="register" ng-show="RegForm.reg_user.$valid && RegForm.reg_email.$valid && RegForm.reg_password.$valid && RegForm.reg_password2.$valid && register.reg_password2 === register.reg_password" ng-click="submitRegister()">
                     <h2>Register</h2>
                 </div>
-
                 
-        
-
-
             </div>
           
 
             <div id="login_ajuste">
-                <div id="login" ng-show="LogForm.login_user.$valid && LogForm.login_password.$valid" ng-click="submitLogin()">
-                    <h2>Login</h2>
-                </div>
-              
-             <div id="btn-login" ng-click="logGoogle()" ><h2>Google</h2></div>
-             
+            
+             <a id="btn-login" href="http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/index.php?module=login&function=social_login" target="_self" ><h2>Social Login</h2></a>
+
             </div>
-
-            <button id="show_recoverypass">Recuperar contraseña</button>
-            <div id="rp_password">
-                <form id="recover_form" name="recover_form">
-                    <input required type="text" name="rpuser" id="rpuser" ng-model="recover.rpuser" placeholder="Usuario" ng-minlength="3" ng-maxlength="20"/>
-                    <button id="recovery_passw" ng-click="recPass()" >Recuperar contraseña</button>
-                </form>
-            </div>
-
-
-
 
         </div>
     </div>

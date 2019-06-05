@@ -52,8 +52,54 @@ unlimty.config(['$routeProvider',
                 }
             })
 
+            .when("/login:logout", {
+                resolve: {
+                    logout: function (localstorageService, $timeout, toastr) {
+                        toastr.info('Sesión cerrada', 'LogOut',{
+                            closeButton: true
+                        });
+                        $timeout( function(){
+                            localstorageService.clearSUsers();
+                            localstorageService.clearUsers();
+                            location.href = '#/home';
+                        }, 2000 );
+                    }
+                }
+            })
+
+            .when("/login/social/:token_log", {templateUrl: "frontend/modules/login/view/login.view.html", 
+                resolve: {
+                    social_token: function ($route, toastr, localstorageService, $timeout, loginService) {
+                        //return ($route.current.params.token_log);
+                        var social_token = $route.current.params.token_log;
+                        console.log(social_token);
+                        var test = social_token;
+                    
+                        if((social_token) && (social_token === test)) {
+                            test = "no";
+                            localstorageService.setUsers(social_token);
+                            toastr.success('Inicio de sesion correcto', 'Perfecto',{
+                                closeButton: true
+                            });
+                            $timeout( function(){
+                                loginService.login();
+                                location.href = '#/home';
+                                //localstorageService.clearUsers();
+                            }, 200 );
+                        }
+                        
+                    }
+                }
+            })
+
             .when("/login/recover_password/:token", {templateUrl: "frontend/modules/login/view/recover_password.view.html", controller: "changepassCtrl"
             })
+
+            // Profile
+            .when("/profile", {templateUrl: "frontend/modules/login/view/profile.view.html", controller: "profileCtrl"
+            })
+
+
             
 
 

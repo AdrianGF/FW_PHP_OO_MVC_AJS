@@ -86,6 +86,53 @@
 		    };
             return $return = array('valido' => $valid,'error' => $error, 'data' => $result);
 		}
+
+		//
+
+		if($type === 'edit_profile'){
+			$filter = array(
+		        'Name' => array(
+		            'filter' => FILTER_VALIDATE_REGEXP,
+		            'options' => array('regexp' => '/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9_.-]*$/')
+		        ),
+		        'Surname1' => array(
+		            'filter' => FILTER_VALIDATE_REGEXP,
+		            'options' => array('regexp' => '/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9_.-]*$/')
+				),
+				'Surname2' => array(
+		            'filter' => FILTER_VALIDATE_REGEXP,
+		            'options' => array('regexp' => '/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9_.-]*$/')
+				),
+				'Birthday' => array(
+		            'filter' => FILTER_VALIDATE_REGEXP,
+		            'options' => array('regexp' => '/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9_.-]*$/')
+		        )
+            );
+            
+		    $result = filter_var_array($data, $filter);
+			if ($result != null && $result){
+		        if(!$result['Name']){
+		            $error['Name'] = "El nombre tiene que contener entre 5 y 25 caracteres";
+		            $valid = false;
+				}
+				if(!$result['Surname1']){
+		            $error['Surname1'] = "El primer apellido tiene que contener entre 5 y 25 caracteres";
+		            $valid = false;
+				}
+				if(!$result['Surname2']){
+		            $error['Surname2'] = "El segundo apellido tiene que contener entre 5 y 25 caracteres";
+		            $valid = false;
+		        }
+				if(!$result['Birthday']){
+		            $error['Birthday'] = "Fecha no valida";
+		            $valid = false;
+		        }
+		    } else {
+		        $valid = false;
+		    };
+            return $return = array('valido' => $valid,'error' => $error, 'data' => $result);
+
+		}
 		
 		if($type === 'recover_pass'){
 			if(!exist_user($data)){
@@ -138,4 +185,80 @@
             $longitud = 4;
         }
         return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
-    }
+	}
+
+	function encode($name){
+		require_once "JWT.php";
+
+		$header = '{"typ":"JWT", "alg":"HS256"}';
+		$secret = generate_Token_secure(10);
+
+		$payload = '{
+		"iat":' . time() . '", 
+		"exp":' . time()  +  (60*60) . '",
+		"name":' . $name . '
+		}';
+
+		$JWT = new JWT;
+		$token = $JWT->encode($header, $payload, $secret);
+		//$json = $JWT->decode($token, $secret);
+		return $token;
+	}
+
+	require SITE_ROOT . 'modules/login/utils/auth0/vendor/autoload.php';
+	use Auth0\SDK\Auth0;
+	
+	function login_social(){
+
+		$domain        = 'dev-iqc252su.eu.auth0.com';
+		$key           =  api_key('auth0');
+		$client_secret =  api_key('auth0_sec');
+		$redirect_uri  = 'http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/index.php?module=login&function=social_data';
+		$audience      = 'https://' . 'dev-iqc252su.eu.auth0.com' . '/userinfo';
+	  
+		$auth0 = new Auth0([
+		  'domain' => $domain,
+		  'client_id' => $key,
+		  'client_secret' => $client_secret,
+		  'redirect_uri' => $redirect_uri,
+		  'audience' => $audience,
+		  'scope' => 'openid profile',
+		  'persist_id_token' => true,
+		  'persist_access_token' => true,
+		  'persist_refresh_token' => true
+		]);
+	  
+		$auth0->login();
+
+	}
+
+	function data_social(){
+
+		$domain        = 'dev-iqc252su.eu.auth0.com';
+		$key           =  api_key('auth0');
+		$client_secret =  api_key('auth0_sec');
+		$redirect_uri  = 'http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/index.php?module=login&function=social_data';
+		$audience      = 'https://' . 'dev-iqc252su.eu.auth0.com' . '/userinfo';
+	  
+		$auth0 = new Auth0([
+		  'domain' => $domain,
+		  'client_id' => $key,
+		  'client_secret' => $client_secret,
+		  'redirect_uri' => $redirect_uri,
+		  'audience' => $audience,
+		  'scope' => 'openid profile',
+		  'persist_id_token' => true,
+		  'persist_access_token' => true,
+		  'persist_refresh_token' => true
+		]);
+	  
+		$userInfo = $auth0->getUser();
+		return $userInfo;
+
+	}
+
+	
+
+	
+	
+	

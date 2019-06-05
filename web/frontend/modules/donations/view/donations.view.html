@@ -10,7 +10,7 @@
         <div class="inner">
                 <div class="grid-style">
                     
-                    <div ng-repeat="data in all_projects_data">
+                        <div ng-repeat="data in project_page">
                             <div class="box">
         
                                 <div class="image fit">
@@ -43,8 +43,16 @@
                                 </div>
         
                             </div>
-                        </div>
-                                  
+                        </div>    
                 </div>
             </div>
+</div>
+
+<div ng-repeat="data in one_project_data" >
+    <p>{{data.ProName}}</p>
+</div>
+
+<div id="pager" ng-show="bootpageV">
+    <uib-pagination class="pagination-sm pagination" total-items="all_projects.length" ng-model="currentPage"
+    ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=4></uib-pagination>        
 </div>

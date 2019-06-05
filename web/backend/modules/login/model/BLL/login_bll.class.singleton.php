@@ -47,4 +47,25 @@ class login_bll{
     public function user_info_BLL($arrArgument){
         return $this->dao->select_user_info($this->db,$arrArgument);
     }
+
+    public function insert_user_social_BLL($arrArgument){
+        return $this->dao->insert_user_social($this->db,$arrArgument);
+    }
+    
+    public function obtain_paises_BLL($url) {
+        return $this->dao->obtain_paises_DAO($url);
+    }
+
+    public function obtain_provincias_BLL() {
+        return $this->dao->obtain_provincias_DAO();
+    }
+
+    public function obtain_poblaciones_BLL($arrArgument) {
+        return $this->dao->obtain_poblaciones_DAO($arrArgument);
+    }
+
+    public function update_user_BLL($arrArgument) {
+        return $this->dao->update_user_DAO($this->db,$arrArgument);
+    }
+
 }

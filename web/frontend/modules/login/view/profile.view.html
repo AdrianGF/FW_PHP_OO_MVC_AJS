@@ -1,0 +1,147 @@
+<uib-tabset class="tabbable">
+    <uib-tab heading="Mi perfil" ng-attr-active="tabs[0].active" ng-click="tab01()">
+        <form id="profile_view" name="profile_view" class="view-perfil" style="width: 100%; margin: 0px;"></form>
+            <div class="row">
+                <div class='ajuste'>
+                    <div id='profile_ajuste' >
+                        <div id='table_profile_ajuste'>
+                            <table id='profile_tab'>
+                                <tr>
+                                    <td rowspan='2' class='td_img_perf'> <img class='profile_img' ng-src="{{info_user.avatar}}" /></td>
+                                    <td>Nombre de cuenta:</td>
+                                    <td>{{info_user.user}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Correo:</td>
+                                    <td>{{info_user.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align: center;"><h2>Datos personales:</h2></td>
+                                </tr>
+                                <tr>
+                                    <td>Nombre:</td>
+                                    <td colspan="2">{{info_user.Name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Apellidos:</td>
+                                    <td colspan="2">{{info_user.Surname1}} | {{info_user.Surname2}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Fecha de nacimiento:</td>
+                                    <td>{{info_user.Birthday}}</td>
+                                </tr>
+                                <tr>
+                                    <td>País:</td>
+                                    <td>{{info_user.Country}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Provincia:</td>
+                                    <td>{{info_user.Province}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ciudad:</td>
+                                    <td>{{info_user.City}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </uib-tab>
+    <uib-tab heading="Editar perfil" ng-attr-active="tabs[1].active">
+        <div class="row">
+            <form id="profile_form" name="profile_form" class="form-perfil" style="width: 100%;">
+                <div class="row">
+                    <div class='ajuste'>
+                        <div id='profile_ajuste' >
+                            <div id='table_profile_ajuste'>
+                                <table id='profile_tab'>
+                                    <tr>
+                                        <td rowspan='2' class='td_img_perf'> <img class='profile_img' ng-src="{{info_user.avatar}}" /></td>
+                                        <td>Nombre de cuenta:</td>
+                                        <td>{{info_user.user}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Correo:</td>
+                                        <td>{{info_user.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td colspan="3" style="text-align: center;"><h2>Datos personales:</h2></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>Nombre:</td>
+                                        <td colspan="2"><input placeholder="{{info_user.Name}}" type="text" ng-model="profile.Name" id="profileName" name="profileName" ng-pattern="/^\D{3,30}$/" ng-minlength="3" maxlength="25"></input></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apellidos:</td>
+                                        <td colspan="2">
+                                        <input placeholder="{{info_user.Surname1}}"  type="text" ng-model="profile.Surname1" id="profileSurname1" name="profileSurname1" ng-pattern="/^\D{3,30}$/" ng-minlength="4" maxlength="25">
+                                        <input placeholder="{{info_user.Surname2}}" type="text" ng-model="profile.Surname2" id="profileSurname2" name="profileSurname2" ng-pattern="/^\D{3,30}$/" ng-minlength="4" maxlength="25"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha de nacimiento:</td>
+                                        <td><input placeholder="{{info_user.Birthday}}" type="text" ng-model="profile.Birthday" name="profileBirthday" id="profileBirthday" ></td>
+                                    </tr>
+                                    <tr>
+                                        <td>País:</td>
+                                        <td class="control-group" colspan="2">
+                                            <select name="pais" class="form-control" ng-model="pais" ng-options="item.sName for item in paises" placeholder="Pais" id="pais" ng-change="resetPais()">
+                                                <option value="">Seleccione un pais</option>
+                                            </select>
+                                            <span class="text-danger" ng-show="AlertMessage" ng-model="pais_error">{{pais_error}}</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Provincia:</td>
+                                        <td class="control-group" colspan="2">
+                                                <select name="provincia" class="form-control" id="provincia"  ng-options="item.nombre for item in provincias"
+                                                ng-model="provincia" placeholder="Provincia" ng-change="resetValues()" ng-disabled="pais.sISOCode!='ES'">
+                                                    <option value="">Seleccione una provincia</option>
+                                                </select>
+                                                <span class="text-danger" ng-show="AlertMessage" ng-model="login.prov_error">{{login.prov_error}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ciudad:</td>
+                                        <td class="control-group" colspan="2">
+                                                <select type="text" class="form-control" name="poblacion" ng-model="poblacion"
+                                                ng-options="item.poblacion for item in poblaciones "placeholder="Poblacion" id="poblacion" ng-disabled="pais.sISOCode!='ES'">
+                                                    <option value="">Seleccione una ciudad</option>
+                                                </select>
+                                                <span class="text-danger" ng-show="AlertMessage" ng-model="user.pob_error">{{user.pob_error}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" rowspan="4">
+                                            <button id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
+                                        </td>
+                                    </tr>
+                                        
+                                </table>
+                                <div>
+                                    <input type="button" ng-click="submit()" name="submit" value="Guardar"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </from>
+        </div>
+        <div id="rp_password">
+            <form id="recover_form" name="recover_form">
+                <input required type="text" name="rpuser" id="rpuser" ng-model="recover.rpuser" placeholder="Usuario" ng-minlength="3" ng-maxlength="20"/>
+                <button id="recovery_passw" ng-click="recPass()" >Recuperar contraseña</button>
+            </form>
+        </div>
+    </uib-tab>
+    <uib-tab heading="Mis proyectos" ng-attr-active="tabs[2].active">
+         <div class="row">
+         </div>
+    </uib-tab>
+</uib-tabset>
+</div>

@@ -44,6 +44,38 @@
         <name>key_auth0</name>
         <uri>key_auth0</uri>
     </function>
+    <function>
+        <name>social_login</name>
+        <uri>social_login</uri>
+    </function>
+    <function>
+        <name>social_data</name>
+        <uri>social_data</uri>
+    </function>
+    <function>
+        <name>upload_avatar</name>
+        <uri>upload_avatar</uri>
+    </function>
+    <function>
+        <name>delete_avatar</name>
+        <uri>delete_avatar</uri>
+    </function>
+    <function>
+        <name>load_pais_user</name>
+        <uri>load_pais_user</uri>
+    </function>
+    <function>
+        <name>load_provincias_user</name>
+        <uri>load_provincias_user</uri>
+    </function>
+    <function>
+        <name>load_poblaciones_user</name>
+        <uri>load_poblaciones_user</uri>
+    </function>
+    <function>
+        <name>edit_profile</name>
+        <uri>edit_profile</uri>
+    </function>
 
 
 </functions>
