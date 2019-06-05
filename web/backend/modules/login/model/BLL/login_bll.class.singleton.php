@@ -68,4 +68,13 @@ class login_bll{
         return $this->dao->update_user_DAO($this->db,$arrArgument);
     }
 
+    public function select_favs_BLL($arrArgument) {
+        return $this->dao->select_favs_DAO($this->db,$arrArgument);
+    }
+
+    public function select_favs_project_bll($arrArgument) {
+        return $this->dao->select_favs_project_DAO($this->db,$arrArgument);
+    }
+    
+
 }

@@ -5186,6 +5186,7 @@ ul.pagination > li:hover > a {
 
 #profile_ajuste {
 	width: 100%;
+	border-top: 1px solid black; 
 	display: inline-block;
 	background-color: lightgray;
 	text-align: center;
@@ -5193,6 +5194,7 @@ ul.pagination > li:hover > a {
 }
 
 #table_profile_ajuste {
+	
 	margin-top: 40px;
 	width: 70%;
 	display: inline-block;
@@ -5329,3 +5331,95 @@ ul.pagination > li:hover > a {
 	background-image: linear-gradient(to right, rgb(210, 227, 233) , rgb(184, 255, 237));
 	width: 100%;
 }
+
+#rpuser{
+	width: 49%;
+	display: inline-block;
+
+}
+
+#recover_form{
+	margin: 0px;
+	
+}
+
+#recovery_passw{
+
+	border: solid 1px black;
+	background-image: linear-gradient(to right, rgb(63, 136, 158) , rgb(84, 228, 192));
+	width: 49%;
+}
+
+#rp_password{
+	text-align: left;
+	display: inline-block;
+    width: 92%;
+}
+
+#profile_form {
+	margin-bottom: 0px;
+}
+
+#save_profile{
+	border: solid 1px black;
+	background-image: linear-gradient(to right, rgb(63, 136, 158) , rgb(84, 228, 192));
+	width: 100%;
+	margin-bottom: 20px
+}
+
+.tab01, .tab02, .tab03, .tab04{
+	border: 1px solid black;
+	margin: 4px;
+	margin-bottom: 0px;
+	border-bottom: none;
+    width: 15%;
+	text-align: center;
+	padding: 0px;
+	background-color: darkgray;
+}
+
+.tab01:hover{
+	background-color: lightgray;
+	border-bottom: 1px solid lightgray; 
+	z-index: 1;
+}
+
+
+.tab02:hover{
+	background-color: lightgray;
+	border-bottom: 1px solid lightgray; 
+	z-index: 1;
+}
+
+.tab03:hover{
+	background-color: lightgray;
+	border-bottom: 1px solid lightgray; 
+	z-index: 1;
+}
+
+.tab04:hover{
+	background-color: lightgray;
+	border-bottom: 1px solid lightgray; 
+	z-index: 1;
+}
+
+
+
+.nav-tabs{
+	height: 45px;
+    margin-bottom: -2px !important;
+	background-color: floralwhite;
+}
+
+.nav-tabs .ng-binding{
+	text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.active{
+	background-color: lightgray;
+	border-bottom: 1px solid lightgray; 
+	z-index: 1;
+}
+

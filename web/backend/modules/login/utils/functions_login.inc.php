@@ -105,7 +105,7 @@
 				),
 				'Birthday' => array(
 		            'filter' => FILTER_VALIDATE_REGEXP,
-		            'options' => array('regexp' => '/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9_.-]*$/')
+		            'options' => array('regexp' => '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/')
 		        )
             );
             

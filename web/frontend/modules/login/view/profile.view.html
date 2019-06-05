@@ -1,5 +1,5 @@
 <uib-tabset class="tabbable">
-    <uib-tab heading="Mi perfil" ng-attr-active="tabs[0].active" ng-click="tab01()">
+    <uib-tab class="tab01" heading="Mi perfil" ng-attr-active="tabs[0].active" ng-click="tab01()">
         <form id="profile_view" name="profile_view" class="view-perfil" style="width: 100%; margin: 0px;"></form>
             <div class="row">
                 <div class='ajuste'>
@@ -28,19 +28,19 @@
                                 </tr>
                                 <tr>
                                     <td>Fecha de nacimiento:</td>
-                                    <td>{{info_user.Birthday}}</td>
+                                    <td colspan="2">{{info_user.Birthday}}</td>
                                 </tr>
                                 <tr>
                                     <td>País:</td>
-                                    <td>{{info_user.Country}}</td>
+                                    <td colspan="2">{{info_user.Country}}</td>
                                 </tr>
                                 <tr>
                                     <td>Provincia:</td>
-                                    <td>{{info_user.Province}}</td>
+                                    <td colspan="2">{{info_user.Province}}</td>
                                 </tr>
                                 <tr>
                                     <td>Ciudad:</td>
-                                    <td>{{info_user.City}}</td>
+                                    <td colspan="2">{{info_user.City}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -49,7 +49,7 @@
             </div>
         </form>
     </uib-tab>
-    <uib-tab heading="Editar perfil" ng-attr-active="tabs[1].active">
+    <uib-tab class="tab02" heading="Editar perfil" ng-attr-active="tabs[1].active">
         <div class="row">
             <form id="profile_form" name="profile_form" class="form-perfil" style="width: 100%;">
                 <div class="row">
@@ -74,22 +74,22 @@
 
                                     <tr>
                                         <td>Nombre:</td>
-                                        <td colspan="2"><input placeholder="{{info_user.Name}}" type="text" ng-model="profile.Name" id="profileName" name="profileName" ng-pattern="/^\D{3,30}$/" ng-minlength="3" maxlength="25"></input></td>
+                                        <td colspan="2"><input required placeholder="{{info_user.Name}}" type="text" ng-model="profile.Name" id="profileName" name="profileName" ng-pattern="/^\D{3,30}$/" ng-minlength="3" maxlength="25"></input></td>
                                     </tr>
                                     <tr>
                                         <td>Apellidos:</td>
                                         <td colspan="2">
-                                        <input placeholder="{{info_user.Surname1}}"  type="text" ng-model="profile.Surname1" id="profileSurname1" name="profileSurname1" ng-pattern="/^\D{3,30}$/" ng-minlength="4" maxlength="25">
-                                        <input placeholder="{{info_user.Surname2}}" type="text" ng-model="profile.Surname2" id="profileSurname2" name="profileSurname2" ng-pattern="/^\D{3,30}$/" ng-minlength="4" maxlength="25"></td>
+                                        <input required placeholder="{{info_user.Surname1}}"  type="text" ng-model="profile.Surname1" id="profileSurname1" name="profileSurname1" ng-pattern="/^\D{3,30}$/" ng-minlength="4" maxlength="25">
+                                        <input required placeholder="{{info_user.Surname2}}" type="text" ng-model="profile.Surname2" id="profileSurname2" name="profileSurname2" ng-pattern="/^\D{3,30}$/" ng-minlength="4" maxlength="25"></td>
                                     </tr>
                                     <tr>
                                         <td>Fecha de nacimiento:</td>
-                                        <td><input placeholder="{{info_user.Birthday}}" type="text" ng-model="profile.Birthday" name="profileBirthday" id="profileBirthday" ></td>
+                                        <td><input required autocomplete="off" placeholder="{{info_user.Birthday}}" type="text" ng-model="profile.Birthday" name="profileBirthday" id="profileBirthday" datepickerp=""></td>
                                     </tr>
                                     <tr>
                                         <td>País:</td>
                                         <td class="control-group" colspan="2">
-                                            <select name="pais" class="form-control" ng-model="pais" ng-options="item.sName for item in paises" placeholder="Pais" id="pais" ng-change="resetPais()">
+                                            <select required name="pais" class="form-control" ng-model="pais" ng-options="item.sName for item in paises" placeholder="Pais" id="pais" ng-change="resetPais()">
                                                 <option value="">Seleccione un pais</option>
                                             </select>
                                             <span class="text-danger" ng-show="AlertMessage" ng-model="pais_error">{{pais_error}}</span>
@@ -124,7 +124,7 @@
                                         
                                 </table>
                                 <div>
-                                    <input type="button" ng-click="submit()" name="submit" value="Guardar"/>
+                                    <input id="save_profile" type="button" ng-click="submit()" name="submit" value="Guardar" ng-show="profile_form.profileName.$valid && profile_form.profileSurname1.$valid && profile_form.profileSurname2.$valid && profile_form.profileBirthday.$valid && profile_form.pais.$valid"/>
                                 </div>
                             </div>
                         </div>
@@ -132,16 +132,31 @@
                 </div>
             </from>
         </div>
-        <div id="rp_password">
-            <form id="recover_form" name="recover_form">
-                <input required type="text" name="rpuser" id="rpuser" ng-model="recover.rpuser" placeholder="Usuario" ng-minlength="3" ng-maxlength="20"/>
-                <button id="recovery_passw" ng-click="recPass()" >Recuperar contraseña</button>
-            </form>
-        </div>
     </uib-tab>
-    <uib-tab heading="Mis proyectos" ng-attr-active="tabs[2].active">
+    <uib-tab class="tab03" heading="Mis proyectos" ng-attr-active="tabs[2].active">
          <div class="row">
          </div>
+    </uib-tab>
+    <uib-tab class="tab04" heading="Mis favoritos" ng-attr-active="tabs[3].active">
+            <div class="row">
+                
+                    <div class="ajuste_favs">
+                            <div class="inner">
+                                    <div class="grid-style">
+                                        
+                                            <div ng-repeat="data in project">
+                                                <p>{{data.ProName}}</p>
+                                            </div>    
+                                    </div>
+                                </div>
+                    </div>
+
+                <div id="pager" ng-show="bootpageV">
+                        <uib-pagination class="pagination-sm pagination" total-items="project.length" ng-model="currentPage"
+                        ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=4></uib-pagination>        
+                </div>
+
+            </div>
     </uib-tab>
 </uib-tabset>
 </div>

@@ -88,10 +88,18 @@
           
 
             <div id="login_ajuste">
-            
-             <a id="btn-login" href="http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/index.php?module=login&function=social_login" target="_self" ><h2>Social Login</h2></a>
+                <div id="rp_password">
+                        <form id="recover_form" name="recover_form">
+                            <input required type="text" name="rpuser" id="rpuser" ng-model="recover.rpuser" placeholder="Usuario" ng-minlength="3" ng-maxlength="20"/>
+                            <button id="recovery_passw" ng-click="recPass()" >Recuperar contraseña</button>
+                        </form>
+                </div>
+                <hr>
+                <a id="btn-login" href="http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/index.php?module=login&function=social_login" target="_self" ><h2>Social Login</h2></a>
 
             </div>
+
+
 
         </div>
     </div>

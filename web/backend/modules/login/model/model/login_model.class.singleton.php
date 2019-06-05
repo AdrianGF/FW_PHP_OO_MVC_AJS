@@ -67,4 +67,12 @@ class login_model {
         return $this->bll->update_user_BLL($arrArgument);
     }
 
+    public function select_favs($arrArgument){
+        return $this->bll->select_favs_BLL($arrArgument);
+    }
+    
+    public function select_favs_project($arrArgument){
+        return $this->bll->select_favs_project_BLL($arrArgument);
+    }
+
 }

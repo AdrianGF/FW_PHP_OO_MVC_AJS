@@ -287,16 +287,45 @@ class controller_login {
     function edit_profile() {
         $jsondata = array();
         $info_data = $_POST;
+        $token = $info_data['Token_log'];
         $response = validate_data($info_data,'edit_profile');
 
         if( $response['valido']){
-           $resu = loadModel(MODEL_LOGIN,'login_model','update_user',$info_data);
-
-
+            $resu = loadModel(MODEL_LOGIN,'login_model','update_user',$info_data);
+            $data = loadModel(MODEL_LOGIN,'login_model','user_info',$token);
+            $response['datos'] = $data;
         }
        
 
+        echo json_encode($response);
+        
+    }
+
+    function user_favs() {
+        $IDuser = $_POST['IDuser'];
+
+        if($IDuser){
+            $resu = loadModel(MODEL_LOGIN,'login_model', 'select_favs', $IDuser);
+
+        }else{
+            $resu = "ERROR";
+        }
+        
         echo json_encode($resu);
+        
+    }
+
+    function favs_project() {
+        $idproject = $_POST['idproject'];
+
+        if($idproject){
+            $data = loadModel(MODEL_LOGIN,'login_model', 'select_favs_project', $idproject);
+
+        }else{
+            $data = "ERROR";
+        }
+        
+        echo json_encode($data);
         
     }
 

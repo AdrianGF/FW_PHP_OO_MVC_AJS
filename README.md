@@ -79,8 +79,7 @@ con la opcion de donar al iniciar sesión en una cuenta.
     Social Login.
     Comparte modulo con el del Login.
     El profile está compuesto por la visata de los datos del
-    del usuario, la modificación de los mismos, junto a
-    el Recover Password.
+    usuario, la modificación de los mismos.
     Además el formulario de edicion de datos contiene un
     Dropzone y Dependent Drop Down.
 
@@ -113,6 +112,9 @@ con la opcion de donar al iniciar sesión en una cuenta.
     *Contiene una directiva del DropZone.
     **Compuesto por los servicios de Login, las localizaciones
     del País y operaciones sobre el Token
+
+    Puedes hacer un Login, Register, Social Login y un Recover
+    Password.
 
 
 

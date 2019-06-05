@@ -87,6 +87,25 @@ unlimty.controller('loginCtrl', function ($scope, services, toastr, localstorage
 
 		});
 	}
+
+	$scope.recPass = function(){
+		var user = this.recover.rpuser
+		services.post('login','recover_pass_email',{'rpuser':JSON.stringify(user)}).then(function (response) {
+			console.log(response);
+			if (response.valido === true) {
+				toastr.success('Revisa tu correo electronico', 'Perfecto',{
+                    closeButton: true
+                });
+                $timeout( function(){
+		            location.href = '#/';
+		        }, 3000 );
+			}else{
+				toastr.error(response.error.rpuser, 'Error',{
+                	closeButton: true
+            	});
+			}
+		});
+	}
     
 });
 
@@ -112,18 +131,66 @@ unlimty.controller('changepassCtrl', function($scope,services,$route,toastr,$tim
 	}
 });
 
-unlimty.controller('profileCtrl', function ($scope, services, localstorageService, load_pais_prov_poblac, toastr, $timeout) {
+unlimty.controller('profileCtrl', function ($scope, services, localstorageService, load_pais_prov_poblac, toastr, $timeout, loginService) {
   
 
 
-		var token_log = localstorageService.getUsers();
-		//console.log(token_log);
+	var token_log = localstorageService.getUsers();
+	//console.log(token_log);
 
-		services.post('login','user_info',{'token_log':token_log}).then(function (response) {
-			//console.log(response);
-			$scope.info_user = response[0];
-			
-		});
+	services.post('login','user_info',{'token_log':token_log}).then(function (response) {
+		console.log(response);
+		$scope.info_user = response[0];
+		
+		if($scope.info_user){
+			services.post('login','user_favs',{'IDuser': $scope.info_user.user }).then(function (favs) {
+				console.log(favs);
+				
+				if(favs){
+					console.log(favs[0].idproject);
+					idproject = favs[0].idproject;
+
+					services.post('login','favs_project',{'idproject': idproject }).then(function (project) {
+						console.log(project);
+						
+						if(project){
+							$scope.project = project;
+							$scope.currentPage = 1;
+							$scope.project_page = $scope.project.slice(0,4);
+							$scope.bootpageV = true;
+							
+							$scope.pageChanged = function() {
+								var startPos = ($scope.currentPage - 1) * 4;
+								$scope.project_page = $scope.project.slice(startPos, startPos + 4);
+								console.log($scope.currentPage);
+							};
+
+						}else{
+							$scope.info_favs = "No tines favoritos.";
+						}
+						
+						
+					});
+
+				}else{
+					toastr.error('Favoritos no encontrados', 'Error',{
+						closeButton: true
+					});
+				}
+				
+			});
+		}else{
+			toastr.error('Datos de usuarios no encontrados', 'Error',{
+				closeButton: true
+			});
+		}
+		
+
+	});
+
+
+
+
     
 
 
@@ -203,14 +270,12 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
                     $(".msg").addClass('msg_ok').removeClass('msg_error').text('Success Upload image!!');
                     $('.msg').animate({'right': '300px'}, 300);
 
-                    //console.log(response.datos);
-                    $scope.user.avatar = response.datos;
+					//console.log(response.name);
+					$scope.nameAvatar = response.name;
+                    $scope.avatar = response.datos;
+					//console.log($scope.avatar);
 
-                    var user = {usuario: $scope.user.usuario, avatar: response.datos,
-                    tipo: $scope.user.tipo, nombre: $scope.user.nombre};
-                    cookiesService.SetCredentials(user);
-
-                    UserService.login();
+                    loginService.login();
                 } else {
                     $(".msg").addClass('msg_error').removeClass('msg_ok').text(response['error']);
                     $('.msg').animate({'right': '300px'}, 300);
@@ -227,6 +292,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
     }};
 	
 	$scope.submit = function () {
+		var avatar = $scope.nameAvatar;
         var prov = null;
         var pob = null;
         var token = localstorageService.getUsers();
@@ -245,34 +311,22 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
             }
         }
 
-        var data = {"IDuser": $scope.info_user.user ,"Name": this.profile.Name, "Surname1": this.profile.Surname1, "Surname2": this.profile.Surname2, "Birthday": this.profile.Birthday, "Country": this.pais.sName, "Province": prov, "City": pob, "Token_log": token };
+        var data = {"IDuser": $scope.info_user.user ,"Name": this.profile.Name, "Surname1": this.profile.Surname1, "Surname2": this.profile.Surname2, "Birthday": this.profile.Birthday, "Country": this.pais.sName, "Province": prov, "City": pob, "Token_log": token, "Avatar": avatar };
         var data1 = JSON.stringify(data);
         console.log(data1);
 
         services.put("login", "edit_profile", data1).then(function (response) { 
-            console.log(response);
+			//var avatar = response.datos[0].avatar;
+			console.log(avatar);
+			//console.log(response);
+			toastr.success('Cambios guardados correctamante', 'Perfecto',{
+				closeButton: true
+			});
+			$timeout( function(){
+				location.href = '#/';
+			}, 3000 );
         });
 
 	};
-	
-
-	$scope.recPass = function(){
-		var user = this.recover.rpuser
-		services.post('login','recover_pass_email',{'rpuser':JSON.stringify(user)}).then(function (response) {
-			console.log(response);
-			if (response.valido === true) {
-				toastr.success('Revisa tu correo electronico', 'Perfecto',{
-                    closeButton: true
-                });
-                $timeout( function(){
-		            location.href = '#/';
-		        }, 3000 );
-			}else{
-				toastr.error(response.error.rpuser, 'Error',{
-                	closeButton: true
-            	});
-			}
-		});
-	}
 
 });

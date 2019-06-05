@@ -73,7 +73,7 @@ function upload_files() {
             //$upfile = substr($upfile, 1); //$upfile = './media/'.$nombreFichero;
             $nombreFichero = $_FILES['file']['name'];
             $upfile = MEDIA_PATH . $nombreFichero;
-            return $return = array('resultado' => true, 'error' => $error, 'datos' => $upfile);
+            return $return = array('resultado' => true, 'error' => $error, 'datos' => $upfile, 'name' => $nombreFichero);
         }
         return '';
     } else {

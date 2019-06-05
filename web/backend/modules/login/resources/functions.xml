@@ -76,6 +76,14 @@
         <name>edit_profile</name>
         <uri>edit_profile</uri>
     </function>
+    <function>
+        <name>user_favs</name>
+        <uri>user_favs</uri>
+    </function>
+    <function>
+        <name>favs_project</name>
+        <uri>favs_project</uri>
+    </function>
 
 
 </functions>

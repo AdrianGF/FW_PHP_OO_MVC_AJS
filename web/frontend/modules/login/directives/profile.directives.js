@@ -14,16 +14,16 @@ unlimty.directive('dropzone', function () {
     };
   });
 
-unlimty.directive('calendar', function () {
-  return {
+unlimty.directive('datepickerp', function () {
+    return {
       require: 'ngModel',
       link: function (scope, el, attr, ngModel) {
           $(el).datepicker({
-              dateFormat: 'dd/mm/yy',
+              dateFormat: 'mm/dd/yy',
               changeMonth:true,
               changeYear:true,
-              yearRange:"1930:2020",
-              maxDate:"0",
+              yearRange:"1900:2020",
+              maxDate:0,
               onSelect: function (dateText) {
                   scope.$apply(function () {
                       ngModel.$setViewValue(dateText);

@@ -159,12 +159,44 @@ class login_dao {
         $Province = $arrArgument['Province'];
         $City = $arrArgument['City'];
         $token_log = $arrArgument['Token_log'];
+        $nameAvatar = $arrArgument['Avatar'];
+        $avatar = "http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/media/$nameAvatar";
 
         
+        $sql = "UPDATE users SET avatar = '$avatar' WHERE IDuser = '$IDuser' AND token_log = '$token_log'";
+        $db->ejecutar($sql);
 
         $sql = "UPDATE users_info SET `Name` = '$Name', Surname1 = '$Surname1', Surname2 = '$Surname2', Birthday = '$Birthday', Country = '$Country', Province = '$Province', City = '$City' WHERE IDuser = '$IDuser'";
         return $db->ejecutar($sql);
         
     }
+
+    public function select_favs_DAO($db,$arrArgument) {
+        
+        $IDuser = $arrArgument;
+
+        $sql = "SELECT * FROM favoritos WHERE IDuser = '$IDuser'";
+       
+        $resu = $db->ejecutar($sql);
+        return $db->listar($resu);
+
+        //return $arrArgument;
+        
+    }
+
+    public function select_favs_project_DAO($db,$arrArgument) {
+        
+        $idproject = $arrArgument;
+
+        $sql = "SELECT * FROM projects WHERE idproject = $idproject";
+       
+        $resu = $db->ejecutar($sql);
+        return $db->listar($resu);
+
+        //return $idproject;
+        
+    }
+
+    
 
 }
