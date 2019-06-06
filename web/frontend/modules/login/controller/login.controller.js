@@ -146,11 +146,8 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 			services.post('login','user_favs',{'IDuser': $scope.info_user.user }).then(function (favs) {
 				console.log(favs);
 				
-				if(favs){
-					console.log(favs[0].idproject);
-					idproject = favs[0].idproject;
-
-					services.post('login','favs_project',{'idproject': idproject }).then(function (project) {
+				if(favs != '0'){
+					services.post('login','favs_project',{'IDuser': $scope.info_user.user }).then(function (project) {
 						console.log(project);
 						
 						if(project){
@@ -165,10 +162,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 								console.log($scope.currentPage);
 							};
 
-						}else{
-							$scope.info_favs = "No tines favoritos.";
 						}
-						
 						
 					});
 

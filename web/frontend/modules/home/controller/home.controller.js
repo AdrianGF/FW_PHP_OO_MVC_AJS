@@ -1,20 +1,9 @@
-unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplete) {
+unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplete, toastr) {
     cont = 4;
     $scope.autocomplete = autocomplete;
-    var percent = [];
     $scope.projects1 = projects.slice(0,cont);
-    console.log(projects);
-    console.log(autocomplete);
-
-    console.log((projects[10].ProDonate*100)/projects[10].ProPrice);
-
-    console.log(projects.length)
-
-    for ($i = 0; $i < projects.length; $i++){
-        percent.push({"ProPercent": (projects[$i].ProDonate*100)/projects[$i].ProPrice});
-        //console.log($scope.percent);
-    }
-
+    console.log(projects[0].percent);
+  
     
     $scope.showMore = function(){
         cont=cont+2;
@@ -30,8 +19,6 @@ unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplet
           name = $scope.ProjectName.name;
         }else if($scope.ProjectName){
           name = $scope.ProjectName;
-        }else{
-          console.log("hola2")
         }
         if (name) {
           location.href = '#/donations/' + name;
@@ -43,7 +30,33 @@ unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplet
       location.href = '#/donations/' + idproject;
     }
 
+    $scope.like_project = function(idproject){
+      $token_log = localStorage.getItem("token");
+      $token_log = JSON.parse($token_log);
 
+
+      services.post('login','favs_project_validate',{'idproject': idproject, 'token_log': $token_log}).then(function (response) {
+        console.log(response);
+        if(response[0].num != '0' ){
+					toastr.error('Ya está en tus favoritos', 'Error',{
+            closeButton: true
+          });
+        }else{
+          
+          services.post('login','favs_project_insert',{'idproject': idproject, 'token_log': $token_log}).then(function (response2) {
+            console.log(response2);
+            if(response2){
+              toastr.success('Añadido a tus favoritos', 'Perfecto',{
+                closeButton: true
+              });
+            }
+          });
+
+        }
+        
+      });
+
+    }
     
 
 });

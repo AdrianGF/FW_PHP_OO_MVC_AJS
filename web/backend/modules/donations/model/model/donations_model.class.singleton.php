@@ -22,5 +22,6 @@ class donations_model {
     public function select_one_projects($arrArgument) {
         return $this->bll->select_one_projects_bll($arrArgument);
     }
+
     
 }

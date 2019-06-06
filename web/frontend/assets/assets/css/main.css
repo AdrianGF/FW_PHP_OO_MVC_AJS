@@ -5328,7 +5328,11 @@ ul.pagination > li:hover > a {
 }
 
 #dropzone {
-	background-image: linear-gradient(to right, rgb(210, 227, 233) , rgb(184, 255, 237));
+	  background-image: repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 20px,
+      rgba(0, 0, 0, 0.115) 20px,
+      rgba(0, 0, 0, 0.115) 40px);
 	width: 100%;
 }
 
@@ -5423,3 +5427,18 @@ ul.pagination > li:hover > a {
 	z-index: 1;
 }
 
+.ajuste_favs2{
+	width: 90%;
+	display: inline-block;
+	border: solid 1px black;
+}
+
+#fav_h2 {
+	margin: 25px;
+}
+
+#ng_favs{
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}

@@ -75,6 +75,14 @@ class login_bll{
     public function select_favs_project_bll($arrArgument) {
         return $this->dao->select_favs_project_DAO($this->db,$arrArgument);
     }
+
+    public function insert_favs_project_BLL($arrArgument) {
+        return $this->dao->insert_favs_project_DAO($this->db,$arrArgument);
+    }
+
+    public function favs_project_validate_BLL($arrArgument) {
+        return $this->dao->favs_project_validate_DAO($this->db,$arrArgument);
+    }
     
 
 }

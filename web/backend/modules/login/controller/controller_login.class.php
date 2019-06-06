@@ -308,7 +308,7 @@ class controller_login {
             $resu = loadModel(MODEL_LOGIN,'login_model', 'select_favs', $IDuser);
 
         }else{
-            $resu = "ERROR";
+            $resu = "ERROR1";
         }
         
         echo json_encode($resu);
@@ -316,18 +316,60 @@ class controller_login {
     }
 
     function favs_project() {
-        $idproject = $_POST['idproject'];
+        $IDuser = $_POST['IDuser'];
 
-        if($idproject){
-            $data = loadModel(MODEL_LOGIN,'login_model', 'select_favs_project', $idproject);
+        if($IDuser){
+            $data = loadModel(MODEL_LOGIN,'login_model', 'select_favs_project', $IDuser);
 
         }else{
-            $data = "ERROR";
+            $data = "ERROR2";
         }
         
         echo json_encode($data);
         
     }
+
+
+    function favs_project_validate() {
+
+
+        $arrayArgument = array(
+            'idproject' => $_POST['idproject'],
+            'token_log' => $_POST['token_log']
+        );
+
+        if($arrayArgument){
+            $data = loadModel(MODEL_LOGIN,'login_model', 'favs_project_validate', $arrayArgument);
+
+        }else{
+            $data = "ERROR2";
+        }
+        
+        echo json_encode($data);
+        
+    }
+    
+    function favs_project_insert() {
+
+        $arrayArgument = array(
+            'idproject' => $_POST['idproject'],
+            'token_log' => $_POST['token_log']
+        );
+
+        if($arrayArgument){
+            $data = loadModel(MODEL_LOGIN,'login_model', 'insert_favs_project', $arrayArgument);
+
+        }else{
+            $data = "ERROR2";
+        }
+        
+        echo json_encode($data);
+        
+    }
+    
+
+
+    
 
 
 

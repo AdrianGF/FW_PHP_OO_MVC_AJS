@@ -36,6 +36,7 @@ unlimty.config(['$routeProvider',
                 }
             })
 
+
             // Login
             .when("/login", {templateUrl: "frontend/modules/login/view/login.view.html", controller: "loginCtrl"
             })

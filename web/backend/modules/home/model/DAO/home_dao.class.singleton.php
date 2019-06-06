@@ -15,8 +15,9 @@ class home_dao {
 
     public function select_home_top_dao($db){
   
-        $sql = "SELECT * FROM projects ORDER BY ProDonate DESC";
+        $sql = "SELECT *, ROUND(ProDonate*100/ProPrice, 1) AS percent FROM projects ORDER BY ProDonate DESC";
       
+
         $resu = $db->ejecutar($sql);
         return $db->listar($resu);      
 

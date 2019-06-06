@@ -16,7 +16,7 @@
                             <div class="image fit">
                                 <img ng-src="{{data.ProImg}}" alt="" />
                                 <div class="like_bttn">
-                                    <button class="Like" type="button"><img class="img_like" src="http://localhost/framework/FW_PHP_OO_MVC_AJS/web/frontend/assets/images/like.svg" alt=""/></button>
+                                    <button class="Like" type="button"><img class="img_like" ng-click="like_project(data.idproject)" src="http://localhost/framework/FW_PHP_OO_MVC_AJS/web/frontend/assets/images/like.svg" alt=""/></button>
                                 </div>
                             </div>
 
@@ -27,7 +27,8 @@
                                         <h1 class="progressPro_h1">{{data.ProDonate}}/{{data.ProPrice}}{{data.Curr}}</h1>
                                         <div class="price-prog">
                                             <div class="progress">
-                                                <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: {{data.percent}}%" aria-valuenow="{{data.ProDonate}}" aria-valuemin="0" aria-valuemax="100">{{data.percent}}%</div>
+                                                <!--<div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="{{data.ProDonate}}" aria-valuemin="0" aria-valuemax="100">{{data.percent}}%</div>-->
                                             </div>
                                         </div>
                                     </div>

@@ -175,7 +175,7 @@ class login_dao {
         
         $IDuser = $arrArgument;
 
-        $sql = "SELECT * FROM favoritos WHERE IDuser = '$IDuser'";
+        $sql = "SELECT count(*) FROM favoritos WHERE IDuser = '$IDuser'";
        
         $resu = $db->ejecutar($sql);
         return $db->listar($resu);
@@ -186,9 +186,9 @@ class login_dao {
 
     public function select_favs_project_DAO($db,$arrArgument) {
         
-        $idproject = $arrArgument;
+        $IDuser = $arrArgument;
 
-        $sql = "SELECT * FROM projects WHERE idproject = $idproject";
+        $sql = " SELECT * FROM projects p, favoritos f WHERE p.idproject = f.idproject AND f.IDuser = '$IDuser';";
        
         $resu = $db->ejecutar($sql);
         return $db->listar($resu);
@@ -197,6 +197,33 @@ class login_dao {
         
     }
 
+
+    public function favs_project_validate_DAO($db,$arrArgument) {
+        
+        $idproject = $arrArgument['idproject'];
+        $token_log = $arrArgument['token_log'];
+
+        $sql = "SELECT COUNT(*) AS num FROM favoritos f, users u WHERE f.IDuser = u.IDuser AND u.token_log = '$token_log' AND f.idproject = '$idproject'";
+
+        $resu = $db->ejecutar($sql);
+        return $db->listar($resu);
+        
+        
+    }
+
+
+    public function insert_favs_project_DAO($db,$arrArgument) {
+          
+        $idproject = $arrArgument['idproject'];
+        $token_log = $arrArgument['token_log'];
+
+        $sql = "INSERT INTO favoritos(idproject, IDuser) VALUES('$idproject', (SELECT IDuser FROM users WHERE token_log = '$token_log') );";
+       
+        $db->ejecutar($sql);
+        return $arrArgument;
+        
+    }
+    
     
 
 }

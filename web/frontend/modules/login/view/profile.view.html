@@ -1,5 +1,5 @@
 <uib-tabset class="tabbable">
-    <uib-tab class="tab01" heading="Mi perfil" ng-attr-active="tabs[0].active" ng-click="tab01()">
+    <uib-tab class="tab01" heading="Mi perfil" ng-attr-active="tabs[0].active">
         <form id="profile_view" name="profile_view" class="view-perfil" style="width: 100%; margin: 0px;"></form>
             <div class="row">
                 <div class='ajuste'>
@@ -138,25 +138,36 @@
          </div>
     </uib-tab>
     <uib-tab class="tab04" heading="Mis favoritos" ng-attr-active="tabs[3].active">
-            <div class="row">
-                
-                    <div class="ajuste_favs">
-                            <div class="inner">
-                                    <div class="grid-style">
-                                        
-                                            <div ng-repeat="data in project">
-                                                <p>{{data.ProName}}</p>
-                                            </div>    
-                                    </div>
-                                </div>
+
+        <div class="row">
+            <div class='ajuste'>
+                <div class="ajuste_favs" style="border-top: 1px solid black; text-align: center;">
+
+                    <h2 id="fav_h2" >Favoritos</h2>
+                    <div class="ajuste_favs2">
+                        <div class="inner">
+                            <div ng-repeat="data in project" id="ng_favs">
+                                <table id="table_favs" style="margin: 0px; text-align: left;">
+                                        <tr>
+                                            <td style="width: 15%">{{data.ProName}}</td>
+                                            <td style="width: 42%">{{data.ProDesc}}</td>
+                                            <td style="width: 18%">{{data.Mail}}</td>
+                                            <td style="width: 10%">{{data.Ubica}}</td>
+                                            <td style="width: 10%">{{data.ProDateIni}}</td>
+                                            <td style="color: red; width: 5%;">♥</td>
+                                        </tr>
+                                </table>
+                            </div>    
+                        </div>
                     </div>
 
+                </div>
                 <div id="pager" ng-show="bootpageV">
                         <uib-pagination class="pagination-sm pagination" total-items="project.length" ng-model="currentPage"
                         ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=4></uib-pagination>        
                 </div>
-
             </div>
+        </div>
+
     </uib-tab>
 </uib-tabset>
-</div>

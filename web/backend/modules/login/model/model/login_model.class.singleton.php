@@ -75,4 +75,14 @@ class login_model {
         return $this->bll->select_favs_project_BLL($arrArgument);
     }
 
+    public function insert_favs_project($arrArgument){
+        return $this->bll->insert_favs_project_BLL($arrArgument);
+    }
+
+    public function favs_project_validate($arrArgument){
+        return $this->bll->favs_project_validate_BLL($arrArgument);
+    }
+    
+
+    
 }

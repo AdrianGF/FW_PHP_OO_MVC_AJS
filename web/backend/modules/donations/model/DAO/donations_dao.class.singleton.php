@@ -23,9 +23,10 @@ class donations_dao {
 
     public function select_one_projects_dao($db, $arrArgument){
   
-        $sql = "SELECT * FROM projects WHERE idproject = '$arrArgument' ORDER BY ProDonate DESC";
+        $sql = "SELECT * FROM projects WHERE idproject = '$arrArgument' OR ProName LIKE '%$arrArgument%' ORDER BY ProDonate DESC";
       
         $resu = $db->ejecutar($sql);
         return $db->listar($resu);      
-    }    
+    }
+    
 }

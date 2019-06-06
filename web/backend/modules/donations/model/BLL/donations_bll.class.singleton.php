@@ -22,10 +22,7 @@ class donations_bll{
 
     public function select_one_projects_bll($arrArgument){
         return $this->dao->select_one_projects_dao($this->db, $arrArgument);
-    }
-
-    
-
+    }    
 
     
 }

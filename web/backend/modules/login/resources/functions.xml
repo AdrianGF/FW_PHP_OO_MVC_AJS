@@ -84,6 +84,13 @@
         <name>favs_project</name>
         <uri>favs_project</uri>
     </function>
-
+    <function>
+        <name>favs_project_insert</name>
+        <uri>favs_project_insert</uri>
+    </function>
+    <function>
+        <name>favs_project_validate</name>
+        <uri>favs_project_validate</uri>
+    </function>
 
 </functions>
