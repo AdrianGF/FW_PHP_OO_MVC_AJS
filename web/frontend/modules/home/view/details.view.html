@@ -1,0 +1,21 @@
+<div ng-repeat="data in details" id="dtails_rp">
+    <div class="ajuste_details">
+        <div class="top_details">
+            <div class="div_img">
+                <div class="details_img"><img ng-src="{{data.ProImg}}" alt="" /></div>
+            </div>
+            <div class="div_text">
+                <div class="details_name"><h2>{{data.ProName}}</h2></div>
+                <div class="details_desc"><p>{{data.ProDesc}}</p></div>
+                <div class="details_donate"><p>{{data.ProDonate}}/{{data.ProPrice}}{{data.Curr}}</p></div>
+                <div class="details_mail"><p>Created by: {{data.Mail}}</p></div>
+                <hr>
+               
+                <div class="details_bttn"> <button class="donate_cart">Donate</button></div>
+            </div>
+        </div>
+
+
+    </div>
+    <div><button style="background-color: grey;" ng-click="home()">Atras</button></div>
+</div>

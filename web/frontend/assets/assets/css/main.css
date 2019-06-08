@@ -5442,3 +5442,84 @@ ul.pagination > li:hover > a {
 	padding: 0px;
 	margin: 0px;
 }
+
+.name_home{
+	cursor: pointer;
+}
+
+.top_details{
+	display: inline-block;
+	width: 90%;
+	background-color: lightgray;
+	border: 1px black solid;
+	height: 301px;
+}
+
+.details_img{
+	display: inline-block;
+}
+
+.details_img img{
+	display: block;
+}
+
+.details_name{
+	display: block;
+	text-align: center;
+}
+
+.details_bttn{
+	display: block;
+	text-align: center;
+}
+
+.ajuste_details{
+	text-align: center;
+	margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.details_desc{
+	display: block;
+	height: 40px;
+	background-color: #8080803b;
+	border: 1px solid #8080803b;
+}
+
+.details_donate{
+	display: block;
+
+}
+
+
+.details_mail{
+	display: block;
+}
+
+#dtails_rp{
+	text-align: left;
+}
+
+.div_img{
+	display: inline-block;
+	width: 49.5%;
+	height: 301px;
+}
+
+.div_text{
+	height: 301px;
+	display: inline-block;
+	width: 50.1%;
+	text-align: left;
+	vertical-align: top;
+}
+
+.ajuste_shop{
+	margin: 0px;
+    width: 90%;
+    display: inline-block;
+}
+
+.name_donations{
+	cursor: pointer;
+}

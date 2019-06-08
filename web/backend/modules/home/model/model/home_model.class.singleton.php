@@ -23,8 +23,9 @@ class home_model {
         return $this->bll->select_auto_name_bll();
     }
 
-
-    
+    public function load_details($arrArgument) {
+        return $this->bll->load_details_BLL($arrArgument);
+    }
   
 
 }

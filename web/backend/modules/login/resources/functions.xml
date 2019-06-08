@@ -21,10 +21,6 @@
         <uri>recover_pass_email</uri>
     </function>
     <function>
-        <name>recover_password</name>
-        <uri>recover_password</uri>
-    </function>
-    <function>
         <name>update_password</name>
         <uri>update_password</uri>
     </function>

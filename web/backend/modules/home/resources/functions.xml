@@ -4,20 +4,17 @@
         <name>content</name>
         <uri>content</uri>
     </function>
-
     <function>
         <name>top_projects</name>
         <uri>top_projects</uri>
     </function>
-    
     <function>
         <name>load_auto_name</name>
         <uri>load_auto_name</uri>
     </function>
-
-
+    <function>
+        <name>load_details</name>
+        <uri>load_details</uri>
+    </function>
     
-
-    
-
 </functions>

@@ -16,6 +16,15 @@ class controller_home {
         echo json_encode($arrValue); 
     }
     
+    public function load_details() {
+        $idproject = $_POST['idproject'];
+        if($idproject){
+            $resu = loadModel(MODEL_HOME, "home_model", "load_details", $idproject );
+        }else{
+            $resu = 'Error';
+        }
+        echo json_encode($resu); 
+    }
 
 
 }

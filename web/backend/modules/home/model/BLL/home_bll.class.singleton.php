@@ -24,8 +24,10 @@ class home_bll{
         return $this->dao->select_auto_name_dao($this->db);
     }
 
+    public function load_details_BLL($arrArgument) {
+        return $this->dao->load_details_DAO($this->db,$arrArgument);
+    }
+
     
-
-
 
 }

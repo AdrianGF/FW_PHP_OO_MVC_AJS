@@ -24,21 +24,6 @@ class controller_login {
         echo json_encode($info_user);   
     }
 
-    function recover_password() { 
-
-        if (isset($_GET['param'])) {
-            $_SESSION['token'] = $_GET['param'];
-            //print($_SESSION['token']);
-            require_once(VIEW_PATH_INC . "top_page_login.php");
-            require_once(VIEW_PATH_INC . "banner.php");
-            require_once(VIEW_PATH_INC . "header.php");
-            require_once(VIEW_PATH_INC . "menu.php");
-            loadView('modules/login/view/', 'recover_password.html');
-            require_once(VIEW_PATH_INC . "footer.php");
-            require_once(VIEW_PATH_INC . "bottom_page.php");
-        }
-
-    }
 
     function recover_pass_email(){
         $key = api_key('mailgun');

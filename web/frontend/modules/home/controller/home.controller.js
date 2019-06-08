@@ -1,8 +1,8 @@
-unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplete, toastr) {
+unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplete, toastr, $timeout) {
     cont = 4;
     $scope.autocomplete = autocomplete;
     $scope.projects1 = projects.slice(0,cont);
-    console.log(projects[0].percent);
+    //console.log(projects[0].percent);
   
     
     $scope.showMore = function(){
@@ -57,7 +57,30 @@ unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplet
       });
 
     }
+
+  $scope.details_home = function(idproject){
+    console.log(idproject);
+    $timeout( function(){
+      location.href = '#/details'+idproject;
+    }, 20 );
+  }
     
+
+});
+
+unlimty.controller('detailsCtrl', function ($scope, services, toastr, $timeout, idproject) {
+  console.log(idproject);
+
+  services.post('home','load_details',{'idproject': idproject}).then(function (response) {
+    console.log(response);
+    $scope.details = response;
+  });
+
+  $scope.home = function(){
+    $timeout(function(){
+      location.href = '#/donations';
+    }, 20 );
+  }
 
 });
 

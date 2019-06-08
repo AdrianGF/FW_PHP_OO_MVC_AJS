@@ -2,7 +2,7 @@ var unlimty = angular.module('unlimty',['ngRoute', 'toastr' ,'ui.bootstrap']);
 unlimty.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
-            //home
+            //Home
             .when("/", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl",
                 resolve: {
                     projects: function (services) {
@@ -14,14 +14,29 @@ unlimty.config(['$routeProvider',
                 }
             })
 
+            //Details
+            .when("/details:id", 
+            {templateUrl: "frontend/modules/home/view/details.view.html",
+            controller: "detailsCtrl",
+                resolve: {
+                    idproject: function (services, $route) {
+                        return $route.current.params.id;
+                    }
+                }
+            })
+
             // Contact
             .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
 
             // Donations
-            .when("/donations", {templateUrl: "frontend/modules/donations/view/donations.view.html", controller: "donationsCtrl",
+            .when("/donations", {templateUrl: "frontend/modules/donations/view/donations.view.html",
+            controller: "donationsCtrl",
                 resolve: {
                     all_projects: function (services) {
                         return services.get('donations','all_projects');
+                    },
+                    autocomplete: function (services) {
+                        return services.get('home','load_auto_name');
                     }
                 }
             })

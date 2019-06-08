@@ -33,6 +33,19 @@ class home_dao {
     }
 
     
+    public function load_details_DAO($db,$arrArgument) {
+        
+        $idproject = $arrArgument;
+
+        $sql = "SELECT * FROM projects WHERE idproject = '$idproject'";
+
+        $resu = $db->ejecutar($sql);
+        return $db->listar($resu);
+        
+        
+    }
+
+    
 
 
 }
