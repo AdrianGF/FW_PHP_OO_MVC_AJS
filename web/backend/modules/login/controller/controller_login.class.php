@@ -272,12 +272,15 @@ class controller_login {
     function edit_profile() {
         $jsondata = array();
         $info_data = $_POST;
+        $IDuser = $info_data['IDuser'];
         $token = $info_data['Token_log'];
         $response = validate_data($info_data,'edit_profile');
-
-        if( $response['valido']){
+        
+        if($response['valido']){
             $resu = loadModel(MODEL_LOGIN,'login_model','update_user',$info_data);
             $data = loadModel(MODEL_LOGIN,'login_model','user_info',$token);
+            $data['token_log_valido'] = loadModel(MODEL_LOGIN, 'login_model', 'token_log', $IDuser );
+            $data['new_token'] = exist_user($IDuser);
             $response['datos'] = $data;
         }
        
@@ -304,8 +307,9 @@ class controller_login {
         $IDuser = $_POST['IDuser'];
 
         if($IDuser){
-            $data = loadModel(MODEL_LOGIN,'login_model', 'select_favs_project', $IDuser);
-
+            $data['data'] = loadModel(MODEL_LOGIN,'login_model', 'select_favs_project', $IDuser);
+            $data['token_log_valido'] = loadModel(MODEL_LOGIN, 'login_model', 'token_log', $IDuser );
+            $data['new_token'] = exist_user($IDuser);
         }else{
             $data = "ERROR2";
         }

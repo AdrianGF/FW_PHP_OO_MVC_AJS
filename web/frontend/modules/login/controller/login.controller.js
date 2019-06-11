@@ -24,7 +24,7 @@ unlimty.controller('loginCtrl', function ($scope, services, toastr, localstorage
 	$scope.submitLogin = function(){
 		services.put('login','validate_login',{'login_data':JSON.stringify({'login_user':$scope.login.login_user,'login_password':$scope.login.login_password})})
 		.then(function (response) {
-			console.log(response);
+			console.log(response.token_log);
 			if (response.valido) {
 					localstorageService.setUsers(response.token_log);
 					toastr.success('Inicio de sesion correcto', 'Perfecto',{
@@ -148,7 +148,10 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 				
 				if(favs != '0'){
 					services.post('login','favs_project',{'IDuser': $scope.info_user.user }).then(function (project) {
-						console.log(project);
+						//console.log(project.data);
+						var new_token_log = project.new_token[0].token_log
+						localstorageService.setUsers(new_token_log);
+						project = project.data;
 						
 						if(project){
 							$scope.project = project;
@@ -286,6 +289,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
     }};
 	
 	$scope.submit = function () {
+
 		var avatar = $scope.nameAvatar;
         var prov = null;
         var pob = null;
@@ -307,12 +311,14 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 
         var data = {"IDuser": $scope.info_user.user ,"Name": this.profile.Name, "Surname1": this.profile.Surname1, "Surname2": this.profile.Surname2, "Birthday": this.profile.Birthday, "Country": this.pais.sName, "Province": prov, "City": pob, "Token_log": token, "Avatar": avatar };
         var data1 = JSON.stringify(data);
-        console.log(data1);
-
+        //console.log(data1);
+		
         services.put("login", "edit_profile", data1).then(function (response) { 
 			//var avatar = response.datos[0].avatar;
-			console.log(avatar);
-			//console.log(response);
+			var token_dr = JSON.stringify(response.datos.new_token[0].token_log);
+			var token_log = token_dr.replace(/['"]+/g, '');
+
+			localstorageService.setUsers(token_log);
 			toastr.success('Cambios guardados correctamante', 'Perfecto',{
 				closeButton: true
 			});

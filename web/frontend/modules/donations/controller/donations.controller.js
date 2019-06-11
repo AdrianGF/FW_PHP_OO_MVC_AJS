@@ -10,7 +10,7 @@ unlimty.controller('donationsCtrl', function ($scope, services, all_projects, $t
     console.log(all_projects);
 
     $scope.ProjectSearch = function(){
-        console.log("dasdsa");
+        //console.log();
         if ($scope.ProjectName.name) {
           name = $scope.ProjectName.name;
         }else if($scope.ProjectName){
@@ -36,7 +36,7 @@ unlimty.controller('donationsCtrl', function ($scope, services, all_projects, $t
 
 });
 
-unlimty.controller('donationsOneCtrl', function ($scope, services, one_project) {
+unlimty.controller('donationsOneCtrl', function ($scope, services, one_project, $timeout) {
     
     $scope.all_projects = one_project;
     $scope.currentPage = 1;
@@ -45,6 +45,13 @@ unlimty.controller('donationsOneCtrl', function ($scope, services, one_project) 
 
     
     //console.log(all_projects);
+
+    $scope.details_donations = function(one_project){
+      console.log(one_project);
+      $timeout( function(){
+        location.href = '#/details'+one_project;
+      }, 20 );
+    }
     
     $scope.pageChanged = function() {
         var startPos = ($scope.currentPage - 1) * 4;
