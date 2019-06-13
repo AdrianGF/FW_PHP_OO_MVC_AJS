@@ -45,7 +45,18 @@ class home_dao {
         
     }
 
-    
+    public function select_IDuser_DAO($db,$arrArgument) {
+        
+        $token_log = $arrArgument;
 
+        $sql = "SELECT IDuser FROM users WHERE token_log = '$token_log'";
+
+        $resu = $db->ejecutar($sql);
+        return $db->listar($resu);
+        
+        
+    }
+    
+    
 
 }

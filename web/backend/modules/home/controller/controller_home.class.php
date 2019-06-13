@@ -26,5 +26,14 @@ class controller_home {
         echo json_encode($resu); 
     }
 
+    public function select_IDuser() {
+
+        $token_log = $_POST['token_log'];
+        
+        
+        $data = loadModel(MODEL_HOME, "home_model", "select_IDuser", $token_log );
+        echo json_encode($data); 
+    }
+    
 
 }

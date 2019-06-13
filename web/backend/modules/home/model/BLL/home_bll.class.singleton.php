@@ -28,6 +28,9 @@ class home_bll{
         return $this->dao->load_details_DAO($this->db,$arrArgument);
     }
 
+    public function select_IDuser_BLL($arrArgument) {
+        return $this->dao->select_IDuser_DAO($this->db,$arrArgument);
+    }
     
 
 }

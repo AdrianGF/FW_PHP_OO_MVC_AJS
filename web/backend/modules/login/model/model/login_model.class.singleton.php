@@ -83,6 +83,8 @@ class login_model {
         return $this->bll->favs_project_validate_BLL($arrArgument);
     }
     
-
+    public function user_project($arrArgument){
+        return $this->bll->user_project_BLL($arrArgument);
+    }
     
 }

@@ -88,5 +88,9 @@
         <name>favs_project_validate</name>
         <uri>favs_project_validate</uri>
     </function>
+    <function>
+        <name>user_projects</name>
+        <uri>user_projects</uri>
+    </function>
 
 </functions>

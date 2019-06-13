@@ -27,5 +27,8 @@ class home_model {
         return $this->bll->load_details_BLL($arrArgument);
     }
   
+    public function select_IDuser($arrArgument) {
+        return $this->bll->select_IDuser_BLL($arrArgument);
+    }
 
 }

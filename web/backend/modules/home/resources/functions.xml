@@ -16,5 +16,8 @@
         <name>load_details</name>
         <uri>load_details</uri>
     </function>
-    
+    <function>
+        <name>select_IDuser</name>
+        <uri>select_IDuser</uri>
+    </function>
 </functions>

@@ -84,5 +84,8 @@ class login_bll{
         return $this->dao->favs_project_validate_DAO($this->db,$arrArgument);
     }
     
-
+    public function user_project_BLL($arrArgument) {
+        return $this->dao->user_project_DAO($this->db,$arrArgument);
+    }
+    
 }

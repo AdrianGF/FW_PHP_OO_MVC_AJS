@@ -321,14 +321,16 @@ class controller_login {
 
     function favs_project_validate() {
 
-
         $arrayArgument = array(
             'idproject' => $_POST['idproject'],
-            'token_log' => $_POST['token_log']
+            'token_log' => $_POST['token_log'],
         );
+        $IDuser = $_POST['IDuser'];
 
         if($arrayArgument){
             $data = loadModel(MODEL_LOGIN,'login_model', 'favs_project_validate', $arrayArgument);
+            $data['token_log_valido'] = loadModel(MODEL_LOGIN, 'login_model', 'token_log', $IDuser );
+            $data['new_token'] = exist_user($IDuser);
 
         }else{
             $data = "ERROR2";
@@ -356,7 +358,20 @@ class controller_login {
         
     }
     
+    function user_projects() {
 
+        $token_log =  $_POST['token_log'];
+        
+        if($token_log){
+            $data = loadModel(MODEL_LOGIN,'login_model', 'user_project', $token_log);
+
+        }else{
+            $data = "ERROR";
+        }
+        
+        echo json_encode($data);
+
+    }
 
     
 

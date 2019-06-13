@@ -2144,19 +2144,6 @@
 		padding: 0.75rem 1rem;
 	}
 
-	input[type="checkbox"],
-	input[type="radio"] {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-		display: block;
-		float: left;
-		margin-right: -2rem;
-		opacity: 0;
-		width: 1rem;
-		z-index: -1;
-	}
 
 		input[type="checkbox"] + label,
 		input[type="radio"] + label {
@@ -5522,4 +5509,13 @@ ul.pagination > li:hover > a {
 
 .name_donations{
 	cursor: pointer;
+}
+
+.create_pro{
+	cursor: pointer;
+	border: solid black 1px;
+	background-image: linear-gradient(to right, rgb(30, 255, 0) , rgb(17, 216, 27));
+	height: 40px;
+	width: 90%;
+	display: inline-block;
 }

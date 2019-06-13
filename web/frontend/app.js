@@ -115,7 +115,6 @@ unlimty.config(['$routeProvider',
             .when("/profile", {templateUrl: "frontend/modules/login/view/profile.view.html", controller: "profileCtrl"
             })
 
-
             
 
 
