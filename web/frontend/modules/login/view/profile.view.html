@@ -134,7 +134,8 @@
         </div>
     </uib-tab>
     <uib-tab class="tab03" heading="Mis proyectos" ng-click="user_projects()" ng-attr-active="tabs[2].active">
-         <div class="row" ng-show="vista_proyectos_1">
+        
+        <div class="row" ng-show="vista_proyectos_1">
              <div class='ajuste'>
                 <hr>
                 <div style="text-align: center;">
@@ -156,13 +157,13 @@
                                 <button ng-click="update_pro(data.idproject, data.ProDonate)" id="update_pro">Update</button>
                             </div>
                             <div class="div_lsitProDelete">
-                                <button id="delete_pro">Delete</button>
+                                <button ng-click="delete_pro(data.idproject, data.ProName)" id="delete_pro">Delete</button>
                             </div>
                         </div>
                     </div>
                 </div>
-             </div>
-         </div>
+            </div>
+        </div>
 
          <div class="row" ng-show="vista_proyectos_2">
                 <div class='ajuste'>
@@ -287,6 +288,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row" ng-show="vista_proyectos_4">
+                <div class='ajuste'>
+                    <div class="borrar_pro">
+                        <h2>Desea borrar el proyecto {{ProName}}?
+                            <div>
+                                <button id="borrar_si" ng-click="delete_project()">Si</button>
+                                <button id="borrar_no" ng-click="user_projects()">No</button>
+                            </div>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
     </uib-tab>
     <uib-tab class="tab04" heading="Mis favoritos" ng-attr-active="tabs[3].active">
 

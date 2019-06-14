@@ -404,4 +404,20 @@ class controller_login {
 
     }
 
+    function delete_project() {
+
+        $project_info = $_POST;
+
+        if($project_info){
+            $data[0] = loadModel(MODEL_LOGIN,'login_model', 'delete_project', $project_info);
+            $data[1] = loadModel(MODEL_LOGIN,'login_model', 'delete_user_project', $project_info);
+        }else{
+            $data = "ERROR";
+        }
+        
+        echo json_encode($data);
+
+    }
+    
+
 }

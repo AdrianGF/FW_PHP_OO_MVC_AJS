@@ -98,5 +98,14 @@ class login_model {
     public function update_project($arrArgument){
         return $this->bll->update_project_BLL($arrArgument);
     }
+
+    public function delete_project($arrArgument){
+        return $this->bll->delete_project_BLL($arrArgument);
+    }
+
+    public function delete_user_project($arrArgument){
+        return $this->bll->delete_user_project_BLL($arrArgument);
+    }
+    
     
 }

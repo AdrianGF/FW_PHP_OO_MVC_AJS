@@ -291,5 +291,31 @@ class login_dao {
         
     }
     
+    public function delete_project_DAO($db,$arrArgument) {
+
+        $idproject = $arrArgument['idproject'];
+        
+        $sql = "DELETE FROM projects WHERE idproject = '$idproject'";
+       
+        $resu = $db->ejecutar($sql);
+        return $resu;
+        
+    }
+
+    public function delete_user_project_DAO($db,$arrArgument) {
+
+        $idproject = $arrArgument['idproject'];
+        $token_log = $arrArgument['token_log'];
+        
+        $sql = "DELETE FROM user_project WHERE idproject = '$idproject' AND IDuser = (SELECT IDuser FROM users WHERE token_log = '$token_log')";
+       
+        $resu = $db->ejecutar($sql);
+        return $resu;
+        
+    }
+
+    
+
+    
 
 }

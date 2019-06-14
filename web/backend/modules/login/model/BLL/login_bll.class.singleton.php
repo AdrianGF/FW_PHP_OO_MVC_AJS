@@ -99,5 +99,13 @@ class login_bll{
     public function update_project_BLL($arrArgument) {
         return $this->dao->update_project_DAO($this->db,$arrArgument);
     }
+
+    public function delete_project_BLL($arrArgument) {
+        return $this->dao->delete_project_DAO($this->db,$arrArgument);
+    }
+    
+    public function delete_user_project_BLL($arrArgument) {
+        return $this->dao->delete_user_project_DAO($this->db,$arrArgument);
+    }
     
 }

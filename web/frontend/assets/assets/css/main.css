@@ -5524,6 +5524,7 @@ ul.pagination > li:hover > a {
 	width: 90%;
 	text-align: center;
 	display: inline-block;
+	min-height: 300px;
 }
 
 .div_listEach {
@@ -5583,4 +5584,22 @@ ul.pagination > li:hover > a {
 	text-align: right;
 }
 
+#borrar_si{
+	background-color: rgba(255, 0, 0, 0.856);
+	margin-top: 50px;
+	width: 100px;
+	color: yellow;
+	border: 1px solid yellow;
+}
 
+#borrar_no{
+	background-color: rgba(144, 144, 144, 0.856);
+	margin-top: 50px;
+	width: 100px;
+	color: black;
+	border: 1px solid black;
+}
+
+.borrar_pro{
+	height: 400px;
+}

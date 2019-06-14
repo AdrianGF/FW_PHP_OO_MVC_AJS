@@ -100,5 +100,9 @@
         <name>update_project</name>
         <uri>update_project</uri>
     </function>
+    <function>
+        <name>delete_project</name>
+        <uri>delete_project</uri>
+    </function>
 
 </functions>

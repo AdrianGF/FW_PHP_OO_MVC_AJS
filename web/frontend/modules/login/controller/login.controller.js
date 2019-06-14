@@ -333,6 +333,8 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 	$scope.user_projects = function() {
 		$scope.vista_proyectos_1 = true;
 		$scope.vista_proyectos_2 = false;
+		$scope.vista_proyectos_3 = false;
+		$scope.vista_proyectos_4 = false;
 		var token_log = localstorageService.getUsers();
 
 		services.post('login','user_projects',{'token_log':token_log}).then(function (response) {
@@ -347,6 +349,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 		$scope.vista_proyectos_1 = false;
 		$scope.vista_proyectos_2 = true;
 		$scope.vista_proyectos_3 = false;
+		$scope.vista_proyectos_4 = false;
 		
 	};
 
@@ -389,6 +392,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 		$scope.vista_proyectos_1 = false;
 		$scope.vista_proyectos_2 = false;
 		$scope.vista_proyectos_3 = true;
+		$scope.vista_proyectos_4 = false;
 	}
 
 	$scope.update_project = function() {
@@ -410,7 +414,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 					location.reload();
 				}, 2000 );
 			}else{
-				toastr.error('No se puede registrar el proyecto', 'Error',{
+				toastr.error('No se puede cambiar el proyecto', 'Error',{
 					closeButton: true
 				});
 				$timeout( function(){
@@ -422,6 +426,47 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 		});
 	}
 
+	$scope.delete_pro = function(idproject, ProName) {
+		$scope.ProName = ProName;
+		$scope.idproject = idproject;
+		$scope.vista_proyectos_1 = false;
+		$scope.vista_proyectos_2 = false;
+		$scope.vista_proyectos_3 = false;
+		$scope.vista_proyectos_4 = true;
+	}
+
+	
+	$scope.delete_project = function() {
+		
+		var token_log = localstorageService.getUsers();
+		var data = {"idproject": $scope.idproject, "token_log": token_log};
+		var data1 = JSON.stringify(data);
+		console.log(data1)
+		
+		services.post('login','delete_project', data1 ).then(function (response) {
+			console.log(response);
+			
+			if((response['0'] == true ) && (response['1'] == true )){
+				toastr.success('Proyecto borrado correctamante', 'Perfecto',{
+					closeButton: true
+				});
+				$timeout( function(){
+					location.reload();
+				}, 2000 );
+			}else{
+				toastr.error('No se puede borrar el proyecto', 'Error',{
+					closeButton: true
+				});
+				$timeout( function(){
+					location.href = '#/';
+				}, 2000 );
+			}
+
+
+		});
+
+	}
+	
 
 });
 
