@@ -5519,3 +5519,54 @@ ul.pagination > li:hover > a {
 	width: 90%;
 	display: inline-block;
 }
+
+.list_pro{
+	width: 90%;
+	text-align: center;
+	display: inline-block;
+}
+
+.div_listEach {
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+	background-color: lightgray;
+	border: 1px black solid;
+	margin: 1px;
+}
+
+
+.div_lsitProImg, img {
+	display: inline-block;
+	width: 120px;
+}
+
+.div_lsitProName{
+	display: inline-block;
+	margin-left: 5px;
+	width: 54.5%;
+}
+
+.div_lsitProUpdate{
+	display: inline-block;
+}
+
+#update_pro{
+	width: 150px;
+	height: 59.2px;
+	background-image: linear-gradient(to right, rgb(46, 102, 185) , rgb(27, 185, 80));
+	cursor: pointer;
+
+}
+
+.div_lsitProDelete{
+	display: inline-block;
+}
+
+#delete_pro{
+	width: 150px;
+	height: 59.2px;
+	background-image: linear-gradient(to right, rgb(184, 8, 8) , rgb(207, 52, 52));
+	cursor: pointer;
+
+}

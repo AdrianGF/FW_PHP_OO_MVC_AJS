@@ -142,9 +142,18 @@
                 </div>
                 <hr>
                 <div class="list_pro">
-                    <div ng-repeat="data in user_pro">
-                        <div>
-                            <p>{{data.ProName}}</p>
+                    <div ng-repeat="data in user_pro" class="div_listEach">
+                        <div class="div_lsitProImg">
+                            <img ng-src="{{data.ProImg}}" alt="" />
+                        </div>
+                        <div class="div_lsitProName">
+                            <h4>{{data.ProName}}</h4>
+                        </div>
+                        <div class="div_lsitProUpdate">
+                            <button id="update_pro">Update</button>
+                        </div>
+                        <div class="div_lsitProDelete">
+                            <button id="delete_pro">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -156,7 +165,7 @@
                     <table>
                         <tr>
                             <td>Nombre de proyecto:</td>
-                            <td><input required placeholder="Nombre proyecto" type="text" ng-model="project.ProName" id="ProName" name="ProName" ng-pattern="/^\D{3,30}$/" ng-minlength="3" maxlength="25"></input></td>
+                            <td><input required placeholder="Nombre proyecto" type="text" ng-model="project.ProName" id="ProName" name="ProName"  ng-minlength="3" maxlength="25"></input></td>
                         </tr>
                         <tr>
                             <td>Tipo de proyecto:</td>
@@ -174,19 +183,19 @@
                         </tr>
                         <tr>
                             <td>Descripción:</td>
-                            <td><textarea required placeholder="Descripción" type="text-area" ng-model="project.ProDesc" id="ProDesc" name="ProDesc" ng-pattern="/^\D{3,30}$/" ng-minlength="10" maxlength="500"></textarea></td>
+                            <td><textarea required placeholder="Descripción" type="text-area" ng-model="project.ProDesc" id="ProDesc" name="ProDesc" ng-minlength="10" maxlength="500"></textarea></td>
                         </tr>
                         <tr>
                             <td>Mail:</td>
-                            <td><input required placeholder="Correo electronico" type="text" ng-model="project.Mail" id="Mail" name="Mail" ng-pattern="/^\D{3,30}$/" ng-minlength="3" maxlength="25"></input></td>
+                            <td><input required placeholder="Correo electronico" type="text" ng-model="project.Mail" id="Mail" name="Mail"  ng-minlength="3" maxlength="25"></input></td>
                         </tr>
                         <tr>
                             <td>Fehca inicio:</td>
-                            <td><input required autocomplete="off" placeholder="Fecha inicio" type="text" ng-model="profile.ProDateIni" name="ProDateIni" id="ProDateIni" datepickerp=""></td>
+                            <td><input required autocomplete="off" placeholder="Fecha inicio" type="text" ng-model="project.ProDateIni" name="ProDateIni" id="ProDateIni" datepickerp=""></td>
                         </tr>
                         <tr>
                             <td>Subención mínima:</td>
-                            <td><input required placeholder="Subención" type="text" ng-model="project.ProPrice" id="ProPrice" name="ProPrice" ng-pattern="/^\D{3,30}$/" ng-minlength="1" maxlength="25"></input></td>
+                            <td><input required placeholder="Subención" type="text" ng-model="project.ProPrice" id="ProPrice" name="ProPrice"  ng-minlength="1" maxlength="25"></input></td>
                         </tr>
                         <tr>
                             <td>Moneda:</td>
@@ -206,9 +215,9 @@
                             </td>
                         </tr>
                     </table>
-                   <!-- <div>
-                        <input id="save_project" type="button" ng-click="save_project()" name=" " value="Guardar" ng-show="profile_form.profileName.$valid && profile_form.profileSurname1.$valid && profile_form.profileSurname2.$valid && profile_form.profileBirthday.$valid && profile_form.pais.$valid"/>
-                    </div>-->
+                    <div>
+                        <input id="save_project" type="button" ng-click="save_project()" name=" " value="Guardar" ng-show="project.ProName && project.ProType && project.ProDesc && project.Mail && project.ProDateIni && project.ProPrice && project.Curr"/>
+                    </div>
                 </div>
             </div>
     </uib-tab>

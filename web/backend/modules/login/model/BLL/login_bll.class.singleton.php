@@ -87,5 +87,13 @@ class login_bll{
     public function user_project_BLL($arrArgument) {
         return $this->dao->user_project_DAO($this->db,$arrArgument);
     }
+        
+    public function create_project_BLL($arrArgument) {
+        return $this->dao->create_project_DAO($this->db,$arrArgument);
+    }
+
+    public function create_user_project_BLL($arrArgument) {
+        return $this->dao->create_user_project_DAO($this->db,$arrArgument);
+    }
     
 }

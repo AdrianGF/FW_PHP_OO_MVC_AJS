@@ -92,5 +92,9 @@
         <name>user_projects</name>
         <uri>user_projects</uri>
     </function>
+    <function>
+        <name>create_project</name>
+        <uri>create_project</uri>
+    </function>
 
 </functions>

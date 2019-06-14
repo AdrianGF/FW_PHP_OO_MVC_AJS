@@ -235,7 +235,40 @@ class login_dao {
         
     }
     
+    public function create_project_DAO($db,$arrArgument) {
+          
+        $ProName = $arrArgument['ProName'];
+        $ProType = $arrArgument['ProType'];
+        $ProDesc = $arrArgument['ProDesc'];
+        $Mail = $arrArgument['Mail'];
+        $ProDateIni = $arrArgument['ProDateIni'];
+        $ProPrice = $arrArgument['ProPrice'];
+        $ProDonate = $arrArgument['ProDonate'];
+        $Curr = $arrArgument['Curr'];
+        $Img = $arrArgument['ProImg'];
+        $ProImg = "http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/media/$Img";
+
+        $sql = "INSERT INTO projects(ProName, ProType, ProDesc, Mail, ProDateIni, ProPrice, ProDonate, Curr, ProImg) VALUES('$ProName', '$ProType', '$ProDesc', '$Mail', '$ProDateIni', '$ProPrice', '$ProDonate', '$Curr', '$ProImg') ";
+       
+        $resu = $db->ejecutar($sql);
+        return $resu;
+        
+    }
     
+    public function create_user_project_DAO($db,$arrArgument) {
+          
+        $ProName = $arrArgument['ProName'];
+        $token_log = $arrArgument['token_log'];
+
+        $sql = "INSERT INTO user_project(idproject, IDuser) VALUES( (SELECT idproject FROM projects WHERE ProName = '$ProName'), (SELECT IDuser FROM users WHERE token_log = '$token_log'))";
+
+        $resu = $db->ejecutar($sql);
+        return $resu;
+        
+    }
+    
+            
+
     
 
 }

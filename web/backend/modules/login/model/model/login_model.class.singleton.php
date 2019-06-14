@@ -87,4 +87,12 @@ class login_model {
         return $this->bll->user_project_BLL($arrArgument);
     }
     
+    public function create_project($arrArgument){
+        return $this->bll->create_project_BLL($arrArgument);
+    }
+
+    public function create_user_project($arrArgument){
+        return $this->bll->create_user_project_BLL($arrArgument);
+    }
+    
 }
