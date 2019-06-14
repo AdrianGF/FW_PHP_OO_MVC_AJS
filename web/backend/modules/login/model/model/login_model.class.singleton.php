@@ -94,5 +94,9 @@ class login_model {
     public function create_user_project($arrArgument){
         return $this->bll->create_user_project_BLL($arrArgument);
     }
+
+    public function update_project($arrArgument){
+        return $this->bll->update_project_BLL($arrArgument);
+    }
     
 }

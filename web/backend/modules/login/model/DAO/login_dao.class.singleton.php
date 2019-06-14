@@ -268,7 +268,28 @@ class login_dao {
     }
     
             
+    public function update_project_DAO($db,$arrArgument) {
 
+        $idproject = $arrArgument['idproject'];
+        $ProName = $arrArgument['ProName'];
+        $ProType = $arrArgument['ProType'];
+        $ProDesc = $arrArgument['ProDesc'];
+        $Mail = $arrArgument['Mail'];
+        $ProDateIni = $arrArgument['ProDateIni'];
+        $ProPrice = $arrArgument['ProPrice'];
+        $ProDonate = $arrArgument['ProDonate'];
+        $Curr = $arrArgument['Curr'];
+
+        $Img = $arrArgument['ProImg'];
+        $ProImg = "http://localhost/framework/FW_PHP_OO_MVC_AJS/web/backend/media/$Img";
+
+        
+        $sql = "UPDATE projects SET ProName = '$ProName', ProType = '$ProType', ProDesc = '$ProDesc', Mail = '$Mail', ProDateIni = '$ProDateIni', ProPrice = '$ProPrice', ProDonate = '$ProDonate', Curr = '$Curr', ProImg = '$ProImg' WHERE idproject = '$idproject'";
+       
+        $resu = $db->ejecutar($sql);
+        return $resu;
+        
+    }
     
 
 }

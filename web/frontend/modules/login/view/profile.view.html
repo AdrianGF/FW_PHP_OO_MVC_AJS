@@ -143,17 +143,21 @@
                 <hr>
                 <div class="list_pro">
                     <div ng-repeat="data in user_pro" class="div_listEach">
-                        <div class="div_lsitProImg">
-                            <img ng-src="{{data.ProImg}}" alt="" />
+                        <div id="left_list">
+                            <div class="div_lsitProImg">
+                                <img ng-src="{{data.ProImg}}" alt="" />
+                            </div>
+                            <div class="div_lsitProName">
+                                <h4>{{data.ProName}}</h4>
+                            </div>
                         </div>
-                        <div class="div_lsitProName">
-                            <h4>{{data.ProName}}</h4>
-                        </div>
-                        <div class="div_lsitProUpdate">
-                            <button id="update_pro">Update</button>
-                        </div>
-                        <div class="div_lsitProDelete">
-                            <button id="delete_pro">Delete</button>
+                        <div id="right_list">
+                            <div class="div_lsitProUpdate">
+                                <button ng-click="update_pro(data.idproject, data.ProDonate)" id="update_pro">Update</button>
+                            </div>
+                            <div class="div_lsitProDelete">
+                                <button id="delete_pro">Delete</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -162,6 +166,7 @@
 
          <div class="row" ng-show="vista_proyectos_2">
                 <div class='ajuste'>
+                    <h2>Create Project</h2>
                     <table>
                         <tr>
                             <td>Nombre de proyecto:</td>
@@ -217,6 +222,68 @@
                     </table>
                     <div>
                         <input id="save_project" type="button" ng-click="save_project()" name=" " value="Guardar" ng-show="project.ProName && project.ProType && project.ProDesc && project.Mail && project.ProDateIni && project.ProPrice && project.Curr"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="vista_proyectos_3">
+                <div class='ajuste'>
+                    <h2>Update Project</h2>
+                    <table>
+                        <tr>
+                            <td>Nombre de proyecto:</td>
+                            <td><input required placeholder="Nombre proyecto" type="text" ng-model="project.ProName" id="ProName" name="ProName"  ng-minlength="3" maxlength="25"></input></td>
+                        </tr>
+                        <tr>
+                            <td>Tipo de proyecto:</td>
+                            <td>
+                                <label>
+                                    <input type="radio" ng-model="project.ProType" value="game">Game
+                                </label>
+                                <label>
+                                    <input type="radio" ng-model="project.ProType" value="art">Art
+                                </label>
+                                <label>
+                                    <input type="radio" ng-model="project.ProType" value="tecno">Tecno
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Descripción:</td>
+                            <td><textarea required placeholder="Descripción" type="text-area" ng-model="project.ProDesc" id="ProDesc" name="ProDesc" ng-minlength="10" maxlength="500"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Mail:</td>
+                            <td><input required placeholder="Correo electronico" type="text" ng-model="project.Mail" id="Mail" name="Mail"  ng-minlength="3" maxlength="25"></input></td>
+                        </tr>
+                        <tr>
+                            <td>Fehca inicio:</td>
+                            <td><input required autocomplete="off" placeholder="Fecha inicio" type="text" ng-model="project.ProDateIni" name="ProDateIni" id="ProDateIni" datepickerp=""></td>
+                        </tr>
+                        <tr>
+                            <td>Subención mínima:</td>
+                            <td><input required placeholder="Subención" type="text" ng-model="project.ProPrice" id="ProPrice" name="ProPrice"  ng-minlength="1" maxlength="25"></input></td>
+                        </tr>
+                        <tr>
+                            <td>Moneda:</td>
+                            <td>
+                                <label>
+                                    <input type="radio" ng-model="project.Curr" value="€">€
+                                </label>
+                                <label>
+                                    <input type="radio" ng-model="project.Curr" value="$">$
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Imagen:</td>
+                            <td>
+                                <button id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        <input id="update_project" type="button" ng-click="update_project()" name="update_project" value="Update" ng-show="project.ProName && project.ProType && project.ProDesc && project.Mail && project.ProDateIni && project.ProPrice && project.Curr"/>
                     </div>
                 </div>
             </div>

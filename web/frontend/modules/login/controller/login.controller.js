@@ -346,6 +346,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 	$scope.create_pro = function() {
 		$scope.vista_proyectos_1 = false;
 		$scope.vista_proyectos_2 = true;
+		$scope.vista_proyectos_3 = false;
 		
 	};
 
@@ -365,7 +366,7 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 					closeButton: true
 				});
 				$timeout( function(){
-					ocation.reload();
+					location.reload();
 				}, 2000 );
 			}else{
 				toastr.error('No se puede registrar el proyecto', 'Error',{
@@ -380,6 +381,46 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 		});
 	}
 
+
+	$scope.update_pro = function(idproject, ProDonate) {
+		console.log(ProDonate);
+		$scope.ProDonate = ProDonate;
+		$scope.idproject = idproject;
+		$scope.vista_proyectos_1 = false;
+		$scope.vista_proyectos_2 = false;
+		$scope.vista_proyectos_3 = true;
+	}
+
+	$scope.update_project = function() {
+
+		var ProImg = $scope.nameAvatar;
+		var token_log = localstorageService.getUsers();
+		var data = {"idproject": $scope.idproject, "ProName": this.project.ProName, "ProType": this.project.ProType, "ProDesc": this.project.ProDesc, "Mail": this.project.Mail, "ProDateIni": this.project.ProDateIni, "ProPrice": this.project.ProPrice, "ProDonate": $scope.ProDonate, "Curr": this.project.Curr, "ProImg": ProImg, "token_log": token_log };
+		var data1 = JSON.stringify(data);
+		console.log(data1)
+		
+		services.post('login','update_project', data1 ).then(function (response) {
+			console.log(response);
+			
+			if(response['0'] == true ){
+				toastr.success('Cambios guardados correctamante', 'Perfecto',{
+					closeButton: true
+				});
+				$timeout( function(){
+					location.reload();
+				}, 2000 );
+			}else{
+				toastr.error('No se puede registrar el proyecto', 'Error',{
+					closeButton: true
+				});
+				$timeout( function(){
+					location.href = '#/';
+				}, 2000 );
+			}
+
+
+		});
+	}
 
 
 });

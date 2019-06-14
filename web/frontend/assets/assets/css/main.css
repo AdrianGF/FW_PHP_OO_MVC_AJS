@@ -5539,12 +5539,12 @@ ul.pagination > li:hover > a {
 .div_lsitProImg, img {
 	display: inline-block;
 	width: 120px;
+	max-height: 60px;
 }
 
 .div_lsitProName{
 	display: inline-block;
 	margin-left: 5px;
-	width: 54.5%;
 }
 
 .div_lsitProUpdate{
@@ -5570,3 +5570,17 @@ ul.pagination > li:hover > a {
 	cursor: pointer;
 
 }
+
+#left_list{
+	display: inline-block;
+	width: 49.7%;
+	text-align: left;
+}
+
+#right_list{
+	display: inline-block;
+	width: 49.7%;
+	text-align: right;
+}
+
+
