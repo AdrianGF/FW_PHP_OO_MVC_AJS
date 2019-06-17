@@ -339,13 +339,21 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 
 		services.post('login','user_projects',{'token_log':token_log}).then(function (response) {
 			console.log(response);
-			$scope.user_pro = response;
+			if(response){
+				$scope.user_pro = response;
+				$scope.IDuser = response[0].IDuser;
+			}else{
+				toastr.error('No hay proyectos', 'Error',{
+					closeButton: true
+				});
+			}
 
 
 		});
 	};
 
 	$scope.create_pro = function() {
+		//console.log($scope.IDuser);
 		$scope.vista_proyectos_1 = false;
 		$scope.vista_proyectos_2 = true;
 		$scope.vista_proyectos_3 = false;
@@ -354,15 +362,18 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 	};
 
 	$scope.save_project = function() {
+		var IDuser = $scope.IDuser;
 		var ProImg = $scope.nameAvatar;
-		console.log(ProImg);
+		//console.log(ProImg);
 		var token_log = localstorageService.getUsers();
-		var data = {"ProName": this.project.ProName, "ProType": this.project.ProType, "ProDesc": this.project.ProDesc, "Mail": this.project.Mail, "ProDateIni": this.project.ProDateIni, "ProPrice": this.project.ProPrice, "Curr": this.project.Curr, "ProImg": ProImg, "token_log": token_log };
+		var data = {"ProName": this.project.ProName, "ProType": this.project.ProType, "ProDesc": this.project.ProDesc, "Mail": this.project.Mail, "ProDateIni": this.project.ProDateIni, "ProPrice": this.project.ProPrice, "Curr": this.project.Curr, "ProImg": ProImg, "token_log": token_log, "IDuser": IDuser };
 		var data1 = JSON.stringify(data);
 		console.log(data1)
 		
 		services.post('login','create_project', data1 ).then(function (response) {
-			console.log(response);
+			console.log(response.new_token[0].token_log);
+			var new_token = response.new_token[0].token_log;
+			localstorageService.setUsers(new_token);
 			
 			if((response['0'] == true ) && (response['1'] == true )){
 				toastr.success('Cambios guardados correctamante', 'Perfecto',{
@@ -396,15 +407,17 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 	}
 
 	$scope.update_project = function() {
-
+		var IDuser = $scope.IDuser;
 		var ProImg = $scope.nameAvatar;
 		var token_log = localstorageService.getUsers();
-		var data = {"idproject": $scope.idproject, "ProName": this.project.ProName, "ProType": this.project.ProType, "ProDesc": this.project.ProDesc, "Mail": this.project.Mail, "ProDateIni": this.project.ProDateIni, "ProPrice": this.project.ProPrice, "ProDonate": $scope.ProDonate, "Curr": this.project.Curr, "ProImg": ProImg, "token_log": token_log };
+		var data = {"idproject": $scope.idproject, "ProName": this.project.ProName, "ProType": this.project.ProType, "ProDesc": this.project.ProDesc, "Mail": this.project.Mail, "ProDateIni": this.project.ProDateIni, "ProPrice": this.project.ProPrice, "ProDonate": $scope.ProDonate, "Curr": this.project.Curr, "ProImg": ProImg, "token_log": token_log, "IDuser": IDuser };
 		var data1 = JSON.stringify(data);
 		console.log(data1)
 		
 		services.post('login','update_project', data1 ).then(function (response) {
 			console.log(response);
+			var new_token = response.new_token[0].token_log;
+			localstorageService.setUsers(new_token);
 			
 			if(response['0'] == true ){
 				toastr.success('Cambios guardados correctamante', 'Perfecto',{
@@ -437,14 +450,16 @@ unlimty.controller('profileCtrl', function ($scope, services, localstorageServic
 
 	
 	$scope.delete_project = function() {
-		
+		var IDuser = $scope.IDuser;
 		var token_log = localstorageService.getUsers();
-		var data = {"idproject": $scope.idproject, "token_log": token_log};
+		var data = {"idproject": $scope.idproject, "token_log": token_log, "IDuser": IDuser};
 		var data1 = JSON.stringify(data);
 		console.log(data1)
 		
 		services.post('login','delete_project', data1 ).then(function (response) {
 			console.log(response);
+			var new_token = response.new_token[0].token_log;
+			localstorageService.setUsers(new_token);
 			
 			if((response['0'] == true ) && (response['1'] == true )){
 				toastr.success('Proyecto borrado correctamante', 'Perfecto',{

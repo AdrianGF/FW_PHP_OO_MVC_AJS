@@ -228,7 +228,7 @@ class login_dao {
           
         $token_log = $arrArgument;
 
-        $sql = "SELECT pro.* FROM user_project user_pro, projects pro, users us WHERE user_pro.idproject = pro.idproject AND user_pro.IDuser = us.IDuser AND us.token_log = '$token_log'";
+        $sql = "SELECT pro.*, us.IDuser FROM user_project user_pro, projects pro, users us WHERE user_pro.idproject = pro.idproject AND user_pro.IDuser = us.IDuser AND us.token_log = '$token_log'";
        
         $resu = $db->ejecutar($sql);
         return $db->listar($resu);

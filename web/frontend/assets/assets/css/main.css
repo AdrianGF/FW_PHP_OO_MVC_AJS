@@ -5537,7 +5537,7 @@ ul.pagination > li:hover > a {
 }
 
 
-.div_lsitProImg, img {
+.div_lsitProImg, #img_list {
 	display: inline-block;
 	width: 120px;
 	max-height: 60px;
@@ -5602,4 +5602,14 @@ ul.pagination > li:hover > a {
 
 .borrar_pro{
 	height: 400px;
+}
+
+#table_create{
+	width: 90%;
+	margin-left: 5%;
+}
+
+#table_update{
+	width: 90%;
+	margin-left: 5%;
 }

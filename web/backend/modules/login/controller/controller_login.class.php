@@ -376,10 +376,13 @@ class controller_login {
     function create_project() {
 
         $project_info = $_POST;
+        $IDuser = $_POST['IDuser'];
 
         if($project_info){
             $data[0] = loadModel(MODEL_LOGIN,'login_model', 'create_project', $project_info);
             $data[1] = loadModel(MODEL_LOGIN,'login_model', 'create_user_project', $project_info);
+            $data['token_log_valido'] = loadModel(MODEL_LOGIN, 'login_model', 'token_log', $IDuser );
+            $data['new_token'] = exist_user($IDuser);
         }else{
             $data = "ERROR";
         }
@@ -392,10 +395,12 @@ class controller_login {
     function update_project() {
 
         $project_info = $_POST;
+        $IDuser = $_POST['IDuser'];
 
         if($project_info){
             $data[0] = loadModel(MODEL_LOGIN,'login_model', 'update_project', $project_info);
-            
+            $data['token_log_valido'] = loadModel(MODEL_LOGIN, 'login_model', 'token_log', $IDuser );
+            $data['new_token'] = exist_user($IDuser);
         }else{
             $data = "ERROR";
         }
@@ -407,10 +412,13 @@ class controller_login {
     function delete_project() {
 
         $project_info = $_POST;
+        $IDuser = $_POST['IDuser'];
 
         if($project_info){
             $data[0] = loadModel(MODEL_LOGIN,'login_model', 'delete_project', $project_info);
             $data[1] = loadModel(MODEL_LOGIN,'login_model', 'delete_user_project', $project_info);
+            $data['token_log_valido'] = loadModel(MODEL_LOGIN, 'login_model', 'token_log', $IDuser );
+            $data['new_token'] = exist_user($IDuser);
         }else{
             $data = "ERROR";
         }
