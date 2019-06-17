@@ -1,39 +1,44 @@
-#################################################################
 
-########################## Unlimty ##############################
-
-#################################################################
+# **UNLIMTY**
 
 Una apliacación enfocada al inicio de nuevos proyectos para 
 obtener donaciones y así poder subencionarlos.
 También permite ver los proyectos y los objetivos de estos,
-con la opcion de donar al iniciar sesión en una cuenta.
-
-
-########################## Tecnologies #########################
-
-    -PHP
-    -AngularJS
+con la opcion de donar al iniciar sesión en una cuenta...
 
 
 ################################################################
-
-######################## BE FW_PHP_OO_MVC ######################
-
+## **TECNOLOGIES** 
 ################################################################
 
-##########################  FW_PHP_OO_MVC ######################
+    -PHP 5.6.32
+    -AngularJS 1.4
+    -MySQL 5.6.38
+
+
+################################################################
+## **BE FW_PHP_OO_MVC** 
+################################################################
+
+##########################  **FW_PHP_OO_MVC** #######################
 
     -Router
     -Utils
     -Paths
     -Utils -> secret.inc.php*
+    -sql**
 
     *Contiene las credenciales de las API.
+    **Está compuesta por las tablas de usuarios, favoritos
+    y proyectos, estas mismas tablas divididas en varias tablas
+    con los datos.
 
-######################### modules ##############################
-    
-########################## login ###############################
+
+################################################################
+### **modules** 
+################################################################
+
+########################## login #################################
 
     -controller
     -model -> BLL, Model, DAO
@@ -61,7 +66,7 @@ con la opcion de donar al iniciar sesión en una cuenta.
     
 
 
-########################## donations ###########################
+########################### donations ###########################
 
     -controller
     -model -> BLL, Model, DAO
@@ -72,7 +77,7 @@ con la opcion de donar al iniciar sesión en una cuenta.
     Tiene un buscador y una paginación de los proyectos.
 
 
-########################## profile #############################
+########################## profile ##############################
 
     -controller
     -model -> BLL, Model, DAO
@@ -88,16 +93,19 @@ con la opcion de donar al iniciar sesión en una cuenta.
     Dropzone y Dependent Drop Down.
 
 
-################################################################
 
-######################## FE ANGULARJS 1.4 ######################
 
 ################################################################
+## **FE ANGULARJS 1.4** 
+################################################################
+
 
     -app.js
     -apiconector.js
 
-########################## assets ##############################
+################################################################ 
+### **assets**
+################################################################
 
     -css/fonts/js/img*
     -inc -> views
@@ -106,45 +114,62 @@ con la opcion de donar al iniciar sesión en una cuenta.
     *Contiene lo necesario para la template.
     **Contiene una factoria para el uso de las credenciales.
 
-######################### modules ##############################
+################################################################
+### **modules** 
+################################################################
 
-########################## login ###############################
+############################ login ###############################
 
     -controller
     -directives*
     -services**
-    -view
+    -view***
 
     *Contiene una directiva del DropZone.
     **Compuesto por los servicios de Login, las localizaciones
     del País y operaciones sobre el Token
+    ***Tiene tres vistas diferentes, la del profile, recover 
+    password y la del login.
 
     Puedes hacer un Login, Register, Social Login y un Recover
     Password.
 
 
 
-############################ home ##############################
+############################ home ###############################
 
     -controller
-    -view
+    -view*
 
-    Contiene los calculos del Infinite Scroll.
+    *Dos vistas, details, home.
 
-########################## donations ###########################
+    Contiene los calculos del Infinite Scroll y tiene la vista
+    de al hacer click en un proyecto "details".
+
+########################### donations #############################
 
     -controller
-    -view
+    -view*
+
+    *Contiene dos vistas, la de proyectos de api y la lista de
+    proyectos de la web.
 
     Tiene los datos de todos los proyectos, y también
-    la información individualemte de cada uno de ellos.
+    la información individualemte de cada uno de ellos además 
+    de listar los proyectos de la api.
+API: [fundsurfer](https://www.fundsurfer.com/api/projects/json)
 
-########################## profile #############################
+############################ profile ##############################
 
     -controller
     -directives
     -services
-    -view
+    -view*
+
+    *Contiene vista del profile, que dentro de ella se divide en:
+        Los datos del usuario, y poder editarlos.
+        Ver los proyectos, crearlos, borrarlos y listarlos.
+        Y tu lista de tus favoritos. 
 
     Comparte modulo con el Login, y contiene los datos de el
     usuario con la sesión iniciada.
