@@ -1,10 +1,9 @@
 
 # **UNLIMTY**
 
-Una apliacación enfocada al inicio de nuevos proyectos para 
-obtener donaciones y así poder subencionarlos.
-También permite ver los proyectos y los objetivos de estos,
-con la opcion de donar al iniciar sesión en una cuenta...
+Una aplicación enfocada al inicio de nuevos proyectos y financiarlos con donaciones.
+También permite ver los proyectos y los objetivos de estos.
+Iniciar la sesión para crear tus proyectos o bien guardarlos en tus favoritos...
 
 
 ################################################################
@@ -33,6 +32,9 @@ con la opcion de donar al iniciar sesión en una cuenta...
     y proyectos, estas mismas tablas divididas en varias tablas
     con los datos.
 
+    Con el JWT creo tokens de las operaciones críticas y así asegurar la información.
+    Un toaster avisando de las operaciones realizadas.
+
 
 ################################################################
 ### **modules** 
@@ -45,8 +47,9 @@ con la opcion de donar al iniciar sesión en una cuenta...
     -resources
     -utils*
 
-    *contiene una validación, creación del token JWT y el Social
+    *Contiene una validación, creación del token JWT y el Social
     Login por auth0.
+
     El login tiene algunos detalles como mostrar las
     contraseñas, y un toaster avisando en cada momento de las
     operaciones realizadas y la validación por correo del 
@@ -62,7 +65,8 @@ con la opcion de donar al iniciar sesión en una cuenta...
     -resources
 
     El home está compuesto por un infinite scroll y un
-    buscador de los proyectos.
+    buscador de proyectos.
+    Y listado de distintos tipos de proyectos de la API.
     
 
 
@@ -72,8 +76,8 @@ con la opcion de donar al iniciar sesión en una cuenta...
     -model -> BLL, Model, DAO
     -resources
 
-    Esta parte es equivalente a la tiena, solo que con 
-    proyectos a los cuales peudes donar.
+    Esta parte es equivalente a la tienda, solo que con 
+    los proyectos a los cuales puedes donar.
     Tiene un buscador y una paginación de los proyectos.
 
 
@@ -86,10 +90,11 @@ con la opcion de donar al iniciar sesión en una cuenta...
 
     *contiene una validación, creación del token JWT y el 
     Social Login.
+
     Comparte modulo con el del Login.
-    El profile está compuesto por la visata de los datos del
+    El profile está compuesto por la vista de los datos del
     usuario, la modificación de los mismos.
-    Además el formulario de edicion de datos contiene un
+    Además el formulario de edición de datos contiene un
     Dropzone y Dependent Drop Down.
 
 
@@ -100,8 +105,11 @@ con la opcion de donar al iniciar sesión en una cuenta...
 ################################################################
 
 
-    -app.js
-    -apiconector.js
+    -app.js*
+    -apiconnector.js**
+
+    *Donde se realiza el enruta de las módulos.
+    **Conecta el backend y el frontend.
 
 ################################################################ 
 ### **assets**
@@ -112,7 +120,7 @@ con la opcion de donar al iniciar sesión en una cuenta...
     -utils -> secret.factory.js**
 
     *Contiene lo necesario para la template.
-    **Contiene una factoria para el uso de las credenciales.
+    **Contiene una factoría para el uso de las credenciales.
 
 ################################################################
 ### **modules** 
@@ -127,7 +135,7 @@ con la opcion de donar al iniciar sesión en una cuenta...
 
     *Contiene una directiva del DropZone.
     **Compuesto por los servicios de Login, las localizaciones
-    del País y operaciones sobre el Token
+    del País y operaciones sobre el Token. Un único "services" para visualizar un menú para cada típo de usuario.
     ***Tiene tres vistas diferentes, la del profile, recover 
     password y la del login.
 
@@ -143,7 +151,7 @@ con la opcion de donar al iniciar sesión en una cuenta...
 
     *Dos vistas, details, home.
 
-    Contiene los calculos del Infinite Scroll y tiene la vista
+    Contiene los cálculos del Infinite Scroll y tiene la vista
     de al hacer click en un proyecto "details".
 
 ########################### donations #############################
@@ -155,7 +163,7 @@ con la opcion de donar al iniciar sesión en una cuenta...
     proyectos de la web.
 
     Tiene los datos de todos los proyectos, y también
-    la información individualemte de cada uno de ellos además 
+    la información individualmente de cada uno de ellos además 
     de listar los proyectos de la api.
 API: [fundsurfer](https://www.fundsurfer.com/api/projects/json)
 
@@ -168,7 +176,7 @@ API: [fundsurfer](https://www.fundsurfer.com/api/projects/json)
 
     *Contiene vista del profile, que dentro de ella se divide en:
         Los datos del usuario, y poder editarlos.
-        Ver los proyectos, crearlos, borrarlos y listarlos.
+        Ver los proyectos, crearlos, borrarlos y listar.
         Y tu lista de tus favoritos. 
 
     Comparte modulo con el Login, y contiene los datos de el
