@@ -51,6 +51,16 @@ unlimty.config(['$routeProvider',
                 }
             })
 
+            .when("/donations/api/:type", {
+                templateUrl: "frontend/modules/donations/view/api_prod.view.html",
+                controller: "donationsApiCtrl",
+                resolve: {
+                    api_type: function ($route) {
+                        return $route.current.params.type;
+                    }
+                }
+            })
+
 
             // Login
             .when("/login", {templateUrl: "frontend/modules/login/view/login.view.html", controller: "loginCtrl"

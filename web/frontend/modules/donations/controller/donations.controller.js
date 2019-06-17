@@ -65,3 +65,77 @@ unlimty.controller('donationsOneCtrl', function ($scope, services, one_project, 
 });
 
 
+unlimty.controller('donationsApiCtrl', function ($scope, api_type) {
+  var arr = [];
+  
+  $.getJSON('https://www.fundsurfer.com/api/projects/json', function(data) {
+    //console.log(data);
+
+    if(api_type == '1'){
+      
+        var data1 = data.slice(0,100);
+        data1.forEach(function(element) {
+        
+
+          if(element.funding_type == 'Open ended' ){
+            //console.log(element);
+            arr.push(element);
+          }
+          
+        });
+        localStorage.setItem("api_pro", JSON.stringify(arr))
+        
+      }
+      
+      if(api_type == '2'){
+      var data1 = data.slice(0,100);
+      
+      data1.forEach(function(element) {
+        
+        if(element.funding_type == 'Take what you raise' ){
+          //console.log(element);
+          arr.push(element);
+        }
+
+      });
+      localStorage.setItem("api_pro", JSON.stringify(arr))
+    }
+    
+    if(api_type == '3'){
+      var data1 = data.slice(0,100);
+
+      data1.forEach(function(element) {
+
+        if(element.funding_type == 'Take what you raise' ){
+          //console.log(element);
+          arr.push(element);
+        }
+
+      });
+      localStorage.setItem("api_pro", JSON.stringify(arr))
+    }
+
+  });
+
+    var stored = JSON.parse(localStorage.getItem("api_pro"));
+    cont = 4;
+    $scope.api_data = stored.slice(0,cont);
+    //console.log(stored);
+  
+    $scope.showMore = function(){
+      cont=cont+2;
+      $scope.api_data = stored.slice(0,cont);
+      if (cont == 8) {
+        var prov = document.querySelector('#click_scroll');
+        prov.remove();
+      }
+    }
+
+
+
+});
+
+
+
+
+

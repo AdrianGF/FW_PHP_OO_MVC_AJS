@@ -77,6 +77,11 @@ unlimty.controller('homeCtrl', function ($scope, services, projects, autocomplet
       location.href = '#/details'+idproject;
     }, 20 );
   }
+
+  $scope.api_prod = function(type){
+    console.log(type);
+    location.href = '#/donations/api/' + type;
+  }
     
 
 });
