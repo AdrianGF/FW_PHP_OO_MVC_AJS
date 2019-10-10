@@ -14,7 +14,6 @@ Iniciar la sesión para crear tus proyectos o bien guardarlos en tus favoritos..
     -AngularJS 1.4
     -MySQL 5.6.38
 
-
 ################################################################
 ## **BE FW_PHP_OO_MVC** 
 ################################################################
@@ -181,3 +180,4 @@ API: [fundsurfer](https://www.fundsurfer.com/api/projects/json)
 
     Comparte modulo con el Login, y contiene los datos de el
     usuario con la sesión iniciada.
+##################################################################
