@@ -13,7 +13,7 @@ Iniciar la sesión para crear tus proyectos o bien guardarlos en tus favoritos..
     -PHP 5.6.32
     -AngularJS 1.4
     -MySQL 5.6.38
-
+    -Git
 
 ################################################################
 ## **BE FW_PHP_OO_MVC** 
