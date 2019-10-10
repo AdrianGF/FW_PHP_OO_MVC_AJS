@@ -13,7 +13,6 @@ Iniciar la sesión para crear tus proyectos o bien guardarlos en tus favoritos..
     -PHP 5.6.32
     -AngularJS 1.4
     -MySQL 5.6.38
-    -GitFlow
 
 ################################################################
 ## **BE FW_PHP_OO_MVC** 
@@ -181,3 +180,5 @@ API: [fundsurfer](https://www.fundsurfer.com/api/projects/json)
 
     Comparte modulo con el Login, y contiene los datos de el
     usuario con la sesión iniciada.
+##################################################################
+
